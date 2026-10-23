@@ -21,6 +21,8 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
   caches, run `node <app>/tools/stamp.mjs` (`qbank`, `babymo`, `mo/guide`); a version test checks it.
 - The shared look comes from the app kit at `https://design.anantf.com/v1/` (never copy it here). Pages of anantf.com
   (spinal, regional, airway ...) are linked relatively; the Worker forwards them to anantf.com.
+- The MO guide teaches the department handbook's clinical content as a learning app; it is not the handbook. Rosters,
+  leave, MC, who to email, names and phone numbers must not be added to it.
 - Questions in the bank are public: nothing confidential, patient-identifiable or copyrighted.
 - Wrangler config keeps `preview_urls` and `workers_dev` off. The Worker is named `mo`.
 
