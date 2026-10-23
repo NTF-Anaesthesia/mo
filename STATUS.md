@@ -2,9 +2,9 @@
 
 ## Now
 
-- 23 Oct 2026: imported from the old site repo (folders `mo/`, `babymo/`, `qbank/`, no history) with its own Worker `mo`.
-  The checks pass. The cut-over (deploying Worker `mo`, which takes mo.anantf.com over from the old Worker) is run by a
-  separate job; until it has run, the live host is still served by the old Worker.
+- 23 Oct 2026: live. Imported from the old site repo (no history) and cut over the same day: Worker `mo` (version
+  27c8108e) owns mo.anantf.com; `/`, `/guide/`, `/test/`, `/qbank/` answer 200, `/babymo/` forwards to `/test/`,
+  other paths forward to anantf.com. The old Worker `anantf-mo` is left with no address.
 
 ## Waiting on the owner
 
@@ -14,12 +14,11 @@
 
 ## Next (in order)
 
-1. Check mo.anantf.com after the cut-over: `/`, `/guide/`, `/test/`, `/qbank/` answer 200 and `/babymo/` forwards to `/test/`.
-2. Pick up each app's own `NOTES.md` / `mo/STATUS.md` lists.
+1. Pick up each app's own `NOTES.md` / `mo/STATUS.md` lists.
 
 ## Recently done
 
-- Import PR (service workers re-stamped, question-bank suggestion links now open issues in this repo).
+- Import PR #1 (service workers re-stamped, question-bank suggestion links now open issues in this repo); cut-over 23 Oct.
 
 ## Decisions (dated, one line each)
 
