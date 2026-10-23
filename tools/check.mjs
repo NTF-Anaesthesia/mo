@@ -1,6 +1,7 @@
 // Repo checks for mistakes tests don't catch. Run before merging: node tools/check.mjs
-// 1. Each app's sw.js has a plain VERSION starting with its folder name (no deploy stamp) and deletes only caches with
-//    its own prefix (apps can share an origin).
+// 1. Each app's sw.js has a VERSION starting with its folder name and deletes only caches with its own prefix (apps can
+//    share an origin). The apps stamp their own VERSION (node <app>/tools/stamp.mjs; each app's version test checks it).
+//    A retired worker (VERSION ends in -retired) is skipped.
 // 2. Every file in an app's SHELL list exists.
 // 3. wrangler.jsonc keeps preview links and the workers.dev address off.
 // 4. The Worker's tests pass (node --test 'worker/test/*.test.mjs').
@@ -15,17 +16,19 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
 const fail = msg => errors.push(msg);
 
-const apps = fs.readdirSync(ROOT).filter(d => fs.existsSync(path.join(ROOT, d, 'sw.js')));
+const SKIPDIR = /^(\.|node_modules$|tools$|worker$|assets$)/;
+const apps = fs.readdirSync(ROOT, { withFileTypes: true }).filter(d => d.isDirectory() && !SKIPDIR.test(d.name))
+  .flatMap(d => [d.name, ...fs.readdirSync(path.join(ROOT, d.name), { withFileTypes: true }).filter(e => e.isDirectory() && !SKIPDIR.test(e.name)).map(e => `${d.name}/${e.name}`)])
+  .filter(d => fs.existsSync(path.join(ROOT, d, 'sw.js')));
 for (const app of apps) {
   const swPath = `${app}/sw.js`;
   const sw = fs.readFileSync(path.join(ROOT, swPath), 'utf8');
-  const prefix = `${app}-`;
+  const prefix = `${app.split('/')[0]}-`;
 
   const version = sw.match(/const VERSION = '([^']+)'/)?.[1];
   if (!version) fail(`${swPath}: no VERSION constant`);
   else if (!version.startsWith(prefix)) fail(`${swPath}: VERSION '${version}' should start with '${prefix}'`);
-  // a stamped VERSION (from a deploy build) committed by mistake
-  else if (/-[0-9a-f]{8}$/.test(version)) fail(`${swPath}: VERSION '${version}' carries a deploy stamp; put back the plain '${version.replace(/-(\d{4}-\d{2}-\d{2}-)?[0-9a-f]{8}$/, '')}'`);
+  else if (version.endsWith('-retired')) continue;
 
   for (const line of sw.split('\n').filter(l => l.includes('caches.delete'))) {
     if (!line.includes(`startsWith('${prefix}')`)) fail(`${swPath}: caches.delete without a startsWith('${prefix}') guard deletes other apps' caches:\n    ${line.trim()}`);

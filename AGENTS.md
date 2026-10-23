@@ -1,9 +1,10 @@
-# <repo name>
+# mo
 
 Instructions for every AI assistant working here (Claude Code reads this through `CLAUDE.md`).
-Replace the placeholders in angle brackets, then delete this line.
 
-<One or two lines: what this repo is and who uses it.>
+The NTF anaesthesia MO apps, served at **mo.anantf.com** by a small Cloudflare Worker named `mo`: the MO guide
+(`mo/`), the Baby MO test (`babymo/`, at `/test/`) and the question bank (`qbank/`, at `/qbank/`). Part of the NTF
+anaesthesia teaching sites (anantf.com is the landing site, in the `anantf-site` repo).
 
 ## Public here, private elsewhere
 
@@ -13,7 +14,15 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
 
 ## Rules that bite
 
-- <Rule the next session must not get wrong.>
+- Each app keeps its own folder and public path; `worker/routes.js` `SITES` decides what mo.anantf.com serves
+  (`mo/` at the root, `babymo/` at `/test/`, `qbank/` at `/qbank/`). The Baby MO test reads the bank at `../qbank/`,
+  so they must stay on one address.
+- Each `sw.js` VERSION starts with its folder name and is stamped by the app's own tool: after changing a file a worker
+  caches, run `node <app>/tools/stamp.mjs` (`qbank`, `babymo`, `mo/guide`); a version test checks it.
+- The shared look comes from the app kit at `https://design.anantf.com/v1/` (never copy it here). Pages of anantf.com
+  (spinal, regional, airway ...) are linked relatively; the Worker forwards them to anantf.com.
+- Questions in the bank are public: nothing confidential, patient-identifiable or copyrighted.
+- Wrangler config keeps `preview_urls` and `workers_dev` off. The Worker is named `mo`.
 
 ## App defaults
 
@@ -28,6 +37,10 @@ node tools/check.mjs        # repo checks + Worker tests
 node tools/proofread.mjs    # page and doc mistakes
 ```
 
+Per app tests are listed in each app's `NOTES.md`; the browser ones run with
+`PLAYWRIGHT_PATH=/opt/node22/lib/node_modules/playwright/index.mjs CHROMIUM_PATH=/opt/pw-browsers/chromium`
+(`node qbank/test/e2e.mjs`, `babymo/test/e2e.mjs`, `mo/guide/test/e2e.mjs` and the `pwa.e2e.mjs` beside each).
+
 ## Working with the owner
 
 - Instructions mostly come from a phone. Work through a request to the end; ask only when a decision is genuinely
@@ -36,8 +49,9 @@ node tools/proofread.mjs    # page and doc mistakes
 - Merge your own PRs once the checks pass, then report with the PR link (merge by the number the PR creation
   returned) and call `unsubscribe_pr_activity`: each PR event re-sends the whole context.
 - Push once per finished step, not after every small commit (limited build minutes).
-- Each app keeps `NOTES.md` (lasting decisions, how to test) and `STATUS.md` (now, waiting on the owner, next,
-  dated decisions). Read them before starting; update them when a task finishes. Cheap end of session: `quick-save`.
+- Each app keeps `NOTES.md` (lasting decisions, how to test) and, for the MO guide, `STATUS.md`; the repo's own
+  `STATUS.md` holds the state of the host. Read them before starting; update them when a task finishes. Cheap end of
+  session: `quick-save`.
 - Plain words, short; explain technical terms briefly the first time.
 
 ## Token savers

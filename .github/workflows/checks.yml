@@ -1,0 +1,70 @@
+# Checks on every PR and push to main: the repo checks (service workers, Worker routes), the apps' unit tests, and the
+# browser suites (each as its own job; "browser" is green only when all passed).
+name: Checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Repo checks and Worker tests
+        run: node tools/check.mjs
+      - name: Unit tests
+        run: |
+          for f in qbank/test/bank.test.mjs qbank/test/practice.test.mjs qbank/test/version.test.mjs babymo/test/logic.test.mjs babymo/test/version.test.mjs mo/guide/test/calc.test.mjs mo/guide/test/content.test.mjs mo/guide/test/version.test.mjs; do
+            echo "== $f"; node "$f"
+          done
+
+  browser-suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: Question bank, cmd: "node qbank/test/e2e.mjs" }
+          - { name: Question bank (offline), cmd: "node qbank/test/pwa.e2e.mjs" }
+          - { name: Baby MO test, cmd: "node babymo/test/e2e.mjs" }
+          - { name: Baby MO test (offline), cmd: "node babymo/test/pwa.e2e.mjs" }
+          - { name: MO guide, cmd: "node mo/guide/test/e2e.mjs" }
+          - { name: MO guide (offline), cmd: "node mo/guide/test/pwa.e2e.mjs" }
+    name: browser (${{ matrix.name }})
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install a browser
+        run: |
+          npm install -g playwright@1.56.1
+          playwright install chromium
+      - name: Test
+        run: |
+          export PLAYWRIGHT_PATH="$(npm root -g)/playwright/index.mjs"
+          ${{ matrix.cmd }}
+
+  browser:
+    needs: browser-suite
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      RESULT: ${{ needs.browser-suite.result }}
+    steps:
+      - run: |
+          echo "browser suites $RESULT"
+          [ "$RESULT" = success ]

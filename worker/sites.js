@@ -1,7 +1,8 @@
-// The Cloudflare Worker for this repo's addresses. It serves the repo's files (the static assets, bound as ASSETS)
-// and decides which folder an address may see (routes.js). No data, no storage: just files.
+// The Cloudflare Worker behind mo.anantf.com. It serves the repo's files (the static assets, bound as ASSETS;
+// .assetsignore keeps the upload to the apps' folders) and decides which folder an address may see (routes.js).
+// No data, no storage, no secrets: just files.
 // wrangler.jsonc: "run_worker_first" sends every request here.
-import { resolve } from './routes.js';
+import { resolve, isSite, APEX } from './routes.js';
 
 const NOINDEX = 'noindex, nofollow';
 
@@ -22,7 +23,11 @@ export default {
       const dir = await asset(env, url, file + '/index.html');
       if (dir.status === 200) return redirect(url, url.pathname + '/');
     }
-    if (res.status === 404) return notFound();
+    if (res.status === 404) {
+      // not in this site's folders: on the real address it is a page of anantf.com (spinal/, airway.html ...)
+      if (isSite(url.hostname)) return Response.redirect(APEX + url.pathname + url.search, 302);
+      return notFound();
+    }
     res = new Response(res.body, res);
     res.headers.set('X-Robots-Tag', NOINDEX);
     return res;
