@@ -1,10 +1,13 @@
-# Files the Worker never serves (tools, tests, notes, config)
-.git
-.claude
-.github
-tools
-worker
-node_modules
+# Files the Worker never uploads. Only the apps' folders, the MO icons and the logo mark are uploaded; routes.js
+# decides what is served. GitHub Pages is not used here.
+/*
+!/mo/
+!/babymo/
+!/qbank/
+!/assets/
+!/ana-ntf-monogram.svg
 *.md
-wrangler.jsonc
-package.json
+test
+tools
+node_modules
+.wrangler
