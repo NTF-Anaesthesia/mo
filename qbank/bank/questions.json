@@ -674,7 +674,8 @@
    "explain": "Right. A leak lets room air in, so the EtO2 can’t rise. The handbook’s minimum is an EtO2 above 80%; aim for 90% or more, because the oxygen stored in his lungs is what keeps him safe while he isn’t breathing. A beard and a BMI of 31 also warn you that bagging may be hard: worth saying out loud now.\n\nThe other choices:\n• “Start the induction: 62% will do because your consultant is here.” Your consultant shakes their head: “Let’s get the EtO2 up first.” The handbook’s minimum is above 80%, and you should aim for 90%. Heavier patients and men with beards are exactly the ones who desaturate fast and are hard to bag.\n• “Turn the oxygen flow up to 15 L/min and keep the same grip.” More flow doesn’t fix a leak: room air is still sucked in around the mask with every breath. Fix the seal (two hands if needed, a little head-up) and watch the EtO2 climb.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -695,7 +696,8 @@
    "explain": "The handbook dose is 1–2 mg/kg; for a fit 85 kg man 150 mg is about right. Give it steadily, not as a slam, and watch: the eyelash reflex going and his breathing slowing tell you it is working.\n\nThe other choices:\n• “Give propofol 300 mg quickly so he is definitely asleep.” 300 mg is about 3.5 mg/kg, well above the 1–2 mg/kg range, and a fast push drops the blood pressure hard. Your consultant stops you: give a sensible dose and titrate to effect.\n• “Give rocuronium 50 mg first, then the propofol, so the airway is easier.” Never paralyse an awake patient: it is terrifying and dangerous. And the department’s order (handbook step 8) is to give the muscle relaxant only after you have shown you can bag. Your consultant stops you.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -717,7 +719,8 @@
    "explain": "Saying it early is the most useful thing you can do: your consultant can only help with a problem they know about. Then the basics: head position, jaw thrust and a good seal fix most difficult mask ventilation.\n\nThe other choices:\n• “Close the APL valve fully and squeeze hard to force gas in.” High pressure blows gas into the stomach rather than the lungs. That makes regurgitation and aspiration more likely, and a full stomach makes bagging even harder. Keep the APL valve around 20 cmH2O and fix the airway instead.\n• “Reach for the rocuronium: once he is relaxed, bagging will be easier.” Your consultant stops your hand. The handbook rule is the reverse: give the relaxant only after you have shown you can bag (step 8). In experienced hands a relaxant sometimes makes bagging easier, but that is your consultant’s decision after the basics, not yours. Meanwhile the saturation is falling.\n• “Keep trying quietly with one hand; you don’t want to look as if you can’t do it.” Everyone finds some patients hard to bag. Struggling in silence spends the oxygen you built up. The department rule: when anything is out of the ordinary, the first step is to call for help.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -739,7 +742,8 @@
    "explain": "Exactly. The oral airway lifts the tongue off the back of the throat, and two hands give the best seal and jaw thrust.\n\nThe other choices:\n• “Stop and let the propofol wear off so he wakes up.” Propofol can’t be reversed, and while it wears off he still needs oxygen. Waking up is a plan for a failed airway, but only while you keep oxygenating. Keep ventilating and improve the airway.\n• “Ask the AU (anaesthetic unit) nurse for a supraglottic airway straight away.” Your consultant: “Get it ready, but let’s try an oral airway and two hands first.” A supraglottic airway is the right rescue if the basics fail, and having it ready is good thinking.\n• “Put in a nasopharyngeal airway.” It helps too, but in a deeply unconscious patient an oral airway is quicker and doesn’t risk a nosebleed. The nasal airway is useful when the jaw is clenched or the patient is lighter.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -760,7 +764,8 @@
    "explain": "The handbook order exactly: show you can bag, then give the relaxant (step 8), and keep bagging while it takes effect, about 3 minutes (step 9).\n\nThe other choices:\n• “Give rocuronium, then stop bagging while it works so the stomach doesn’t fill with gas.” Gentle bagging at 20 cmH2O through a clear airway sends gas to the lungs, not the stomach. Stopping now wastes the oxygen reserve you have just rebuilt. Keep bagging (step 9).\n• “Give rocuronium and intubate straight away.” Rocuronium at 0.6 mg/kg takes 2–3 minutes to give good intubating conditions. Going in early means a cough, moving cords and a poor view. Your consultant asks you to wait and keep bagging.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -781,7 +786,8 @@
    "explain": "A sustained trace is the one check you can never skip: no trace, wrong place. Chest rise and listening on both sides (handbook step 11) tell you it isn’t too deep.\n\nThe other choices:\n• “The SpO2 is still 99%, so the tube must be in the trachea.” After good preoxygenation the saturation can stay high for minutes with the tube in the oesophagus. Saturation is a late sign; the capnograph is the early one.\n• “You saw it go through the cords, so it is in.” Even experts are sometimes wrong about what they saw. Confirm every tube with sustained capnography.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -804,7 +810,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -826,7 +833,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -848,7 +856,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -871,7 +880,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -894,7 +904,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -916,7 +927,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -938,7 +950,8 @@
    "explain": "Do both at once: get help coming and start the simple fixes. Too much anaesthetic for an elderly patient is the commonest cause: 2.5% sevoflurane is well over 1 MAC (minimum alveolar concentration) at 78, when 1 MAC is only about 1.6% (about 2% in a 40-year-old).\n\nThe other choices:\n• “Give phenylephrine 100 mcg first, and call if it doesn’t work.” Treating quickly is good, but the handbook’s first step when anything is out of the ordinary is to call for help. You can do both: ask the nurse to call while you act. And with a heart rate of 56, ephedrine suits her better than phenylephrine.\n• “Wait for the next automatic reading in 5 minutes: cuff readings are often wrong in lithotomy.” Assume a low reading is real until you have proved otherwise. Recheck it now, not in 5 minutes.\n• “Turn the sevoflurane off completely.” Turning it off risks awareness. Turn it down to about 1 MAC for her age (about 1.5–1.6%) and support the blood pressure. Try again.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -959,7 +972,8 @@
    "explain": "With a slow heart rate, ephedrine is a good first choice: it raises both the heart rate and the blood pressure.\n\nThe other choices:\n• “Run in a litre of fluid and wait.” Fluid helps if she is dry, but it takes minutes to work and a litre is a lot for a 78-year-old heart. The problem here is mostly drug-induced widening of the vessels: give a vasopressor now.\n• “Phenylephrine 100 mcg IV (1 mL of 100 mcg/mL).” It will raise the blood pressure, but phenylephrine only squeezes the vessels, and the reflex response can slow the heart further. It is best when the heart rate is normal or fast.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -980,7 +994,8 @@
    "explain": "Short, in order, with the numbers and what you have done: your consultant can decide in seconds.\n\nThe other choices:\n• “Start with her history from the pre-op clinic.” Lead with the problem and the numbers. The history comes after, if asked.\n• ““Her BP dropped, but it’s better now.”” Too vague. Your consultant needs the lowest value, for how long, what you gave and what it is now. Try again.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1001,7 +1016,8 @@
    "explain": "Good. Think drugs, volume, position and surgery, and then deliberately rule out the dangerous rarer causes.\n\nThe other choices:\n• “Her heart must be failing: get an urgent echo.” Nothing points to heart failure, and she responded to a vasopressor. Start with the common causes.\n• “Anaphylaxis: give adrenaline.” Possible in theory, so look for it, but there is no rash or wheeze and a clear drug explanation. Adrenaline for the wrong reason is risky in a 78-year-old.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1022,7 +1038,8 @@
    "explain": "A sensible plan: enough anaesthetic, small vasopressor doses, a little fluid, and an infusion (phenylephrine or noradrenaline) if she keeps needing boluses, which your consultant decides.\n\nThe other choices:\n• “Give 2 L of fluid quickly.” Large volumes risk fluid overload in an elderly heart, and the low BP comes from widened vessels, not big losses.\n• “Turn the sevoflurane off: no anaesthetic, no low blood pressure.” Awareness under GA is a real harm. Keep enough anaesthetic and support the circulation.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1043,7 +1060,8 @@
    "explain": "Flushing, a low BP, a fast heart rate and rising airway pressure minutes after an antibiotic: anaphylaxis until proven otherwise. Naming it gets everyone working on the same problem.\n\nThe other choices:\n• “Give salbutamol for bronchospasm.” The airways are only part of it: the blood pressure is the immediate threat. Adrenaline treats both.\n• “Give phenylephrine 100 mcg for the low BP and watch.” This is not the usual post-induction dip: the flushing, fast heart rate, high airway pressure and timing all point to anaphylaxis. Phenylephrine doesn’t stop the reaction; adrenaline does.",
    "topics": [
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1065,7 +1083,8 @@
    "explain": "IV adrenaline in 50 mcg steps is the treatment in theatre, where there is IV access and full monitoring.\n\nThe other choices:\n• “Hydrocortisone 200 mg IV and an antihistamine first.” These are not first-line: they don’t raise the BP or open the airways in time. Adrenaline first.\n• “Adrenaline 1 mg IV.” That is the cardiac arrest dose. In a patient with a pulse it can cause severe hypertension, dangerous arrhythmias and heart damage. Your consultant stops you: 50 mcg IV.\n• “Adrenaline 0.5 mg IM into the thigh.” The right drug at the right IM dose, and the choice when there is no IV. In theatre, with a drip and monitoring, small IV doses act faster and are easier to control.",
    "topics": [
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1086,7 +1105,8 @@
    "explain": "Anaphylaxis leaks a lot of fluid out of the vessels: adults often need litres. Keep the adrenaline going until he is stable, and treat the bronchospasm.\n\nThe other choices:\n• “Switch to phenylephrine to avoid a fast heart rate.” Adrenaline is the treatment: it supports the heart, opens the airways and calms the reaction. Phenylephrine does only one of those.\n• “Stop the adrenaline now the BP is better.” Anaphylaxis often rebounds. Keep treating until the BP is stable; many patients need several doses or an infusion.",
    "topics": [
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1107,7 +1127,8 @@
    "explain": "Tryptase confirms anaphylaxis afterwards. Take the first sample once he is stable enough, without delaying treatment, then repeat. Postponing a non-urgent operation is usual.\n\nThe other choices:\n• “Carry on with the surgery now he is stable.” He may rebound, and the operation isn’t urgent. Postponing is usual; your consultant and the surgeon decide.\n• “Tryptase can wait for tomorrow’s blood tests.” Tryptase peaks within 1–2 hours and then falls. Take the first sample as soon as he is stable, then repeat.",
    "topics": [
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1128,7 +1149,8 @@
    "explain": "Any of the drugs (cefazolin, rocuronium, propofol, fentanyl, or chlorhexidine on the skin) could be the cause. Only allergy testing can say which, so list them all, and report it as an adverse drug reaction.\n\nThe other choices:\n• “Record “allergic to cefazolin” and nothing else.” Cefazolin is the likeliest culprit, but muscle relaxants and chlorhexidine are common causes too. Labelling one drug without testing can miss the real cause.\n• “Don’t tell him: it would only worry him.” He needs to know, for his safety at every future operation, and he has a right to know. Tell him clearly once he is awake.",
    "topics": [
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1151,7 +1173,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1173,7 +1196,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1195,7 +1219,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1217,7 +1242,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1239,7 +1265,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1262,7 +1289,8 @@
    "topics": [
     "PACU",
     "Pain",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1285,7 +1313,8 @@
    "topics": [
     "PACU",
     "Pain",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1308,7 +1337,8 @@
    "topics": [
     "PACU",
     "Pain",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1330,7 +1360,8 @@
    "topics": [
     "PACU",
     "Pain",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1351,7 +1382,8 @@
    "explain": "The handbook: when a PACU nurse alerts you, go at once and check airway, breathing and circulation. Stimulation alone often gets an opioid-sedated patient breathing again.\n\nThe other choices:\n• “Read his anaesthetic chart at the desk first.” The chart matters before you give a drug, but airway and breathing come first. Go to the bedside now.\n• “Tell the nurse to give naloxone 400 mcg IV now, and come when you can.” You need to see him, and 400 mcg at once reverses all of his pain relief as well as the sedation.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1372,7 +1404,8 @@
    "explain": "Pinpoint pupils, slow breathing, morphine 10 mg in a 72-year-old with poor kidneys: opioid excess is the likely cause.\n\nThe other choices:\n• “Give flumazenil.” There is no benzodiazepine on the chart. Flumazenil won’t help and can cause seizures. Try again.\n• “Keep stimulating him: it will wear off.” In kidney disease morphine’s effects can last for hours. As soon as you stop talking, he stops breathing. He needs treatment.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1393,7 +1426,8 @@
    "explain": "Small steps restore breathing without stripping away all his pain relief. The aim is breathing, not wide awake.\n\nThe other choices:\n• “Naloxone 400 mcg IV in one go.” A full dose at once reverses everything: sudden severe pain, high BP, a fast heart and, rarely, fluid on the lungs.\n• “Wait for the primary anaesthetist before giving naloxone.” Slow breathing with falling saturation can’t wait. Small doses of naloxone are a PACU MO’s job; call the anaesthetist as well, not instead.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1414,7 +1448,8 @@
    "explain": "Shallow, jerky breathing, a weak head lift and a weak grip after a top-up of rocuronium with no TOF recorded: residual block until proven otherwise. Neostigmine works reliably only once the TOF count is 4; given at a lower count, or without checking, it can leave the patient weak.\n\nThe other choices:\n• “More naloxone.” The opioid effect is already reversed: he is awake and breathing faster. Weakness with shallow breathing points to muscle relaxant still working.\n• “Another dose of neostigmine 2.5 mg.” Neostigmine has a ceiling: beyond about 0.05 mg/kg (5 mg at most) it adds side effects, not strength. Further reversal is the primary anaesthetist’s decision.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1435,7 +1470,8 @@
    "explain": "The danger is the naloxone wearing off while the morphine is still working. Watch him long enough, and leave the monitored-bed decision to a senior.\n\nThe other choices:\n• “Send him to the ward with a dose of naloxone written up in case.” A dose written up only helps if someone notices in time. He needs watching where staff can see him, for at least 2 hours after his last naloxone.\n• “Yes: he is awake and strong now.” Naloxone lasts less than an hour; in kidney disease morphine’s effects last much longer.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1456,7 +1492,8 @@
    "explain": "Facts first. Your consultant will want the exact time of the last doses and his kidney function before deciding anything.\n\nThe other choices:\n• “One day off is close enough: carry on.” It isn’t close. Apixaban taken this morning will still be working tomorrow, and the timing decides whether a spinal is safe. Flag it.\n• “Tell him the operation is cancelled.” Not your decision. The department rule: don’t cancel or refer cases on your own. Get the facts, then call your consultant.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1477,7 +1514,8 @@
    "explain": "Yes. The handbook’s 2 days is the general surgical timing (longer when the kidneys are poor); spinals and epidurals need a longer, separate interval, set out in [the spinal page’s table](../../spinal/#tq-anticoag). Give your consultant the exact time and his kidney function.\n\nThe other choices:\n• “He needs enoxaparin bridging while the apixaban is stopped.” Apixaban and the other direct oral anticoagulants don’t need bridging: they wear off and start working quickly. Bridging is for some patients on warfarin, and it is the consultant’s and surgeon’s decision.\n• “Let him take tonight’s dose as usual and sort it out tomorrow.” Tonight’s dose would push the safe time for surgery or a spinal back even further. This needs a decision tonight, from your consultant.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1498,7 +1536,8 @@
    "explain": "Right. These drugs can cause ketoacidosis with a normal glucose, especially when fasting and stressed by surgery. Ketones, not glucose, show it.\n\nThe other choices:\n• “Stop his metformin too and start an insulin infusion tonight.” Diabetes medicine plans follow the department guideline and your consultant; an overnight insulin infusion isn’t needed for this. Flag it rather than improvising.\n• “No problem: his glucose is normal.” That is the trap: euglycaemic DKA happens with a normal glucose. Ketones show it, not glucose.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1519,7 +1558,8 @@
    "explain": "Snoring, Tired, Observed apnoeas, high blood Pressure, Age over 50, Neck over 40 cm, male Gender: 7 of 8 (his BMI is just under 35). Bringing the CPAP and an opioid-sparing plan both make the night after surgery safer.\n\nThe other choices:\n• “OSA is common: nothing to do.” Untreated OSA makes him sensitive to opioids and sedatives and more likely to obstruct after surgery. It changes the plan, so flag it.\n• “Book a high dependency (HD) bed yourself.” Checking HD or ICU needs is part of a premed, but whether he needs a bed is your consultant’s call. Flag it and ask.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1540,7 +1580,8 @@
    "explain": "Dental damage is one of the commonest complaints after an anaesthetic. A documented, counselled loose tooth is a known risk; an unmentioned one is a surprise for everyone.\n\nThe other choices:\n• “Pull the loose tooth out yourself so it can’t fall into the airway.” Not your job, and not without a dentist. Document it, counsel him and tell your consultant.\n• “It’s only one tooth: not worth mentioning.” Loose teeth can be knocked out by a laryngoscope or a bite block, and could be inhaled. Counsel him, document it and tell your consultant.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1561,7 +1602,8 @@
    "explain": "Short, numbered, with the facts that matter and a clear question at the end. Your consultant can decide in one call.\n\nThe other choices:\n• “Send a message with the main points, and leave the apixaban for the morning team to sort out.” A message is better than nothing, but the anticoagulant timing needs a decision tonight. Call, don’t just text, when something affects whether the case goes ahead.\n• “Call the surgeon and tell them to cancel.” Not your decision to make or pass on. Your consultant decides, and speaks to the surgeon.",
    "topics": [
     "Pre-op",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1582,7 +1624,8 @@
    "explain": "Both are on the handbook’s list of reasons for an RSI: inadequate fasting and an acute abdomen.\n\nThe other choices:\n• “Wait until he has been fasted for 6 hours.” Pain, opioids and the inflamed appendix slow the stomach, so it may still be full at 6 hours, and delay risks perforation. Treat him as a full stomach whatever the clock says.\n• “A standard induction with a supraglottic airway: it’s a short case.” A supraglottic airway doesn’t protect the lungs from vomit. Inadequate fasting and an acute abdomen both call for an RSI.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1603,7 +1646,8 @@
    "explain": "Everything ready before you start: in an RSI there is no time to fetch anything.\n\nThe other choices:\n• “Draw up the induction drugs, and fetch extra kit only if there’s a problem.” In an RSI there is no time to fetch kit. Everything must be ready, checked and within reach before you start.\n• “Propofol and rocuronium 45 mg (0.6 mg/kg).” 0.6 mg/kg is the routine intubating dose and takes 2–3 minutes. For an RSI rocuronium is 1–1.2 mg/kg so that it works in about a minute: about 75–90 mg for him. (The handbook says 1 mg/kg of lean body weight, which under-doses a man who isn’t obese; in obesity your consultant chooses the weight.) And your consultant chose suxamethonium.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1624,7 +1668,8 @@
    "explain": "Head-up preoxygenation fills the lungs with more oxygen and buys apnoea time. Cricoid pressure goes from light to firm as he loses consciousness.\n\nThe other choices:\n• “Thirty seconds of oxygen: speed matters in an RSI.” Speed matters after induction, not before. Full preoxygenation buys the time you will need if intubation is difficult.\n• “Firm cricoid pressure from the start, while he is awake.” 30 N on an awake patient hurts and can make him retch. Light pressure while awake, firm as consciousness goes.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1645,7 +1690,8 @@
    "explain": "The handbook: no bagging until the tube is confirmed. Current practice allows gentle mask ventilation during an RSI if the saturation falls; your consultant decides.\n\nThe other choices:\n• “Bag him firmly while you wait for the suxamethonium.” Firm bagging fills the stomach with gas and makes vomiting more likely: exactly what an RSI is designed to avoid.\n• “Start the laryngoscopy at once, during the fasciculations.” Wait for the fasciculations to finish: until then the jaw and cords may not be relaxed.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1666,7 +1712,8 @@
    "explain": "Saying it early lets the most experienced person make the next attempt with the right kit, while the saturation is still good.\n\nThe other choices:\n• “Keep trying with the same blade for another minute.” A long attempt with a poor view uses up his oxygen and causes swelling. Repeating the same thing rarely gives a different result.\n• “Pass the tube blindly where you think the cords are.” Blind attempts often go into the oesophagus and cause swelling and bleeding.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1687,7 +1734,8 @@
    "explain": "Right. The cricoid stays on until the cuff is up and the tube is confirmed in the trachea.\n\nThe other choices:\n• “The SpO2 is rising, so it’s in: release the cricoid.” Saturation can rise briefly even with a misplaced tube. Sustained capnography first, then release.\n• “Release the cricoid as soon as the tube passes the cords.” Keep it on until the cuff is inflated and capnography confirms the tube is in the trachea.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1708,7 +1756,8 @@
    "explain": "A full-stomach patient needs his protective reflexes back before the tube comes out: fully awake and sitting up.\n\nThe other choices:\n• “Extubate deep, to avoid coughing.” A deep extubation leaves an unprotected airway in a full-stomach patient. He needs his reflexes back: fully awake.\n• “Extubate him yourself while your consultant starts the next case.” In your first month you never extubate or end a case alone: call, then wait.",
    "topics": [
     "Airway",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1730,7 +1779,8 @@
    "explain": "The spinal blocks the sympathetic nerves, so the vessels widen and the BP falls. Nausea is often the first sign. With a slow heart rate, ephedrine is a good choice.\n\nThe other choices:\n• “Give an antiemetic for the nausea.” The nausea is a symptom of the low BP (too little blood to the brain). An antiemetic treats the symptom and misses the cause.\n• “Phenylephrine 100 mcg IV.” It will raise the BP, but with a heart rate of 54 the reflex slowing could make things worse. Ephedrine is the better first choice here.\n• “Wait for the next BP reading.” He is telling you something is wrong now. Treat the BP you have.",
    "topics": [
     "Regional",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1751,7 +1801,8 @@
    "explain": "You need to know how high the block is. A block creeping up causes a falling BP and, if very high, trouble breathing. T8 is fine for a TURP; arm symptoms would mean a high block.\n\nThe other choices:\n• “Nothing more: the BP is better.” You still don’t know how high the block is, and that tells you whether the BP is likely to fall again. Check it.\n• “Tip the table head-down to bring the BP up.” Heavy bupivacaine sinks with gravity: tipping head-down in the first 20–30 minutes lets it spread higher. Raising the legs is fine; tipping the whole table isn’t.",
    "topics": [
     "Regional",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1772,7 +1823,8 @@
    "explain": "The spinal widens the vessels: vasopressors fix that better than litres of fluid. In a TURP, irrigation fluid absorbed through the prostate adds to the load.\n\nThe other choices:\n• “No fluid at all.” Vasopressors are the main treatment, but a modest bolus is reasonable in a fasted elderly man. Talk it through with your consultant.\n• “2 L of fluid quickly.” Too much for an elderly heart, especially with irrigation fluid being absorbed as well. Small boluses and a vasopressor.",
    "topics": [
     "Regional",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1793,7 +1845,8 @@
    "explain": "Confusion, visual change, nausea, a slow heart rate and a high BP during a long resection: TURP syndrome until proven otherwise. The surgeon needs to know now.\n\nThe other choices:\n• “Midazolam to settle him.” Sedation hides the cause and can obstruct his airway and slow his breathing.\n• “Phenylephrine for the nausea.” His BP is high, not low: this nausea is not from a low BP. Think about what is different now.",
    "topics": [
     "Regional",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1814,7 +1867,8 @@
    "explain": "Right. ASA 1 or 2 patients after GA, regional or MAC who meet the criteria can be discharged by the nurse. Aldrete scores activity, breathing, circulation, consciousness and saturation, 0–2 each: she scores 10.\n\nThe other choices:\n• “Only a doctor can discharge anyone after a GA.” At NTFGH, patients who meet the nurse-led discharge criteria can be discharged by the PACU nurse. The criteria list is in PACU.\n• “Keep her another hour to be safe.” She has done her 30 minutes and meets the criteria. Keeping well patients fills PACU beds that sicker patients need.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1835,7 +1889,8 @@
    "explain": "OSA and a high BMI are on the exclusion list. Obstruction when asleep is exactly the risk: CPAP and sitting up treat it, and a monitored bed is a senior’s decision.\n\nThe other choices:\n• “Send him to the ward with nasal oxygen.” Oxygen can keep the saturation number up while he obstructs and his CO2 rises. He needs CPAP, and a senior to decide where he goes.\n• “Nurse-led discharge: he is awake and comfortable.” He is excluded: ASA 3, OSA and a high BMI. And awake isn’t the test: he desaturates when asleep, which is what he will do on the ward.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1856,7 +1911,8 @@
    "explain": "That is the department rule: HD transfers from PACU are done by the primary anaesthetic MO, and a PACU discharge note is still needed.\n\nThe other choices:\n• “The PACU nurse takes him alone.” A patient going to HD goes with the primary anaesthetic MO.\n• “You take him: you are the PACU MO.” The PACU MO must stay physically in PACU. HD transfers are done by the primary anaesthetic MO.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1877,7 +1933,8 @@
    "explain": "Right on both counts. Fast track is only for stable MAC eye cases with no medication, and the primary anaesthetist decides.\n\nThe other choices:\n• “ASA 3, so no nurse-led discharge.” Cataract patients are the exception: ASA 3 cataract patients can have nurse-led discharge.\n• “She must stay 30 minutes like everyone else.” Safe, but not needed. Stable MAC eye cases who had no drugs can be fast-tracked before 30 minutes if the primary anaesthetist agrees.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1898,7 +1955,8 @@
    "explain": "A patient who met the criteria a minute ago can change. Reassess from the start: it is probably a simple faint, but rule out bleeding and drug effects first.\n\nThe other choices:\n• “Give ephedrine 5 mg and let her go once the BP is up.” Treating the number and sending her off skips the question of why. Lie her down, find the cause, and discharge only when she is stable without drugs.\n• “It’s only a faint on standing: let her go.” She no longer meets the discharge criteria: her BP is well below her pre-op value and she has symptoms.",
    "topics": [
     "PACU",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1920,7 +1978,8 @@
    "topics": [
     "Regional",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1942,7 +2001,8 @@
    "topics": [
     "Regional",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1964,7 +2024,8 @@
    "topics": [
     "Regional",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -1986,7 +2047,8 @@
    "topics": [
     "Regional",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -2008,7 +2070,8 @@
    "topics": [
     "Regional",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -2030,7 +2093,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -2052,7 +2116,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -2074,7 +2139,8 @@
    "topics": [
     "Airway",
     "Emergencies",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "standard",
    "status": "active",
@@ -2095,7 +2161,8 @@
    "explain": "Stretching the peritoneum triggers a vagal reflex. Removing the trigger is the fastest fix, and the surgeon can only stop if you tell them, loudly.\n\nThe other choices:\n• “Give atropine first, without disturbing the surgeon.” Atropine helps, but stopping the stretch (the trigger) is faster and more reliable. Tell the surgeon at the same time.\n• “Wait: it usually settles by itself.” It may settle, but it may also slow further to asystole. Act now.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "hard",
    "status": "active",
@@ -2116,7 +2183,8 @@
    "explain": "Atropine blocks the vagal effect within a minute.\n\nThe other choices:\n• “Atropine 0.1 mg IV.” Too small: in adults, very small doses (under about 0.3 mg) can briefly slow the heart further. For a sudden vagal bradycardia give 0.6 mg (one ampoule).\n• “Glycopyrrolate 0.2–0.4 mg IV.” It works too, but more slowly than atropine. It suits slower, less urgent bradycardia.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "hard",
    "status": "active",
@@ -2137,7 +2205,8 @@
    "explain": "Slow, low-pressure insufflation rarely triggers the reflex again, and you are ready if it does.\n\nThe other choices:\n• “Ask the surgeon to convert to an open operation.” Not needed: this is a common reflex that rarely recurs with slow insufflation. If it kept happening, your consultant and the surgeon would decide.\n• “Ask them to insufflate fast to get it over with.” Fast stretching is what triggered it. Slow and low is the way.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "hard",
    "status": "active",
@@ -2158,7 +2227,8 @@
    "explain": "CO2 is absorbed from the abdomen, so the minute ventilation needs to go up. The gas and the head-down tilt push the diaphragm and the lungs up towards the head while the tube stays fixed at the teeth, so its tip can end up in a bronchus, which raises the pressure too.\n\nThe other choices:\n• “Ignore it: CO2 always rises in laparoscopy.” Some rise is expected, but you treat it, and you look for causes that need action.\n• “Give sodium bicarbonate for the acid.” The acid comes from CO2, which leaves through the lungs. Breathe more for her instead.",
    "topics": [
     "Cardiac",
-    "MO guide cases"
+    "MO guide cases",
+    "MO level"
    ],
    "level": "hard",
    "status": "active",

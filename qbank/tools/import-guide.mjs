@@ -52,7 +52,7 @@ for (const s of SCENARIOS) {
     const q = {
       stem, options: choices.map(c => plain(c.text)), answer: choices.indexOf(best[0]),
       explain: `${plain(best[0].feedback)}\n\nThe other choices:\n${others}`,
-      topics: [...TOPICS[s.id], 'MO guide cases'], level: s.level === 'beyond' ? 'hard' : 'standard',
+      topics: [...TOPICS[s.id], 'MO guide cases', 'MO level'], level: s.level === 'beyond' ? 'hard' : 'standard',
       status: 'active', image: '', source, review: '', updated: today,
     };
     const old = bySource.get(source);

@@ -70,7 +70,8 @@ the bank; nothing is synced live. Questions come in by copying:
 - **MO guide cases** (24 Oct 2026): `node qbank/tools/import-guide.mjs` turns each step on a case's main path (the
   route the best answers take; detours after a wrong answer are left out) into a question: the step, then the case
   opening, the guide's choices in a fixed shuffled order, and its feedback as the explanation. Topics come from the
-  script's `TOPICS` table plus `MO guide cases`. Re-run it after editing `mo/guide/js/data/scenarios.js`: questions are
+  script's `TOPICS` table plus `MO guide cases` and `MO level` (owner, 24 Oct 2026: MO-level questions, apart from
+  `Baby MO`). Re-run it after editing `mo/guide/js/data/scenarios.js`: questions are
   matched by their `source` line, so ids stay and guide edits flow in (status and review set in the bank are kept).
   A new case needs a `TOPICS` line.
 - **Baby MO**: the 30 questions from the Baby MO papers carry the topic `Baby MO`. The Baby MO test itself is

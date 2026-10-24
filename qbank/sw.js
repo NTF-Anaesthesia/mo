@@ -11,7 +11,7 @@
 //  - A new version takes over by itself (skipWaiting) and never reloads the page: the page decides when it is safe.
 //  - Only this app's caches (prefix qbank-) are deleted.
 
-const VERSION = 'qbank-2026-10-24-f811318e';
+const VERSION = 'qbank-2026-10-24-b7b15453';
 const NET_WAIT = 2500; // ms before falling back to the cached questions
 const SHELL = ['./', 'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'index.html', 'js/app.js', 'js/bank.js', 'js/practice.js', 'manifest.webmanifest', 'ui/qbank.css', 'ui/ui.js'];
 const SITE = ['https://design.anantf.com/v1/app.css', 'https://design.anantf.com/v1/fonts/inter.woff2', 'https://design.anantf.com/v1/fonts/jetbrains-mono.woff2', 'https://design.anantf.com/v1/fonts/literata.woff2'];
