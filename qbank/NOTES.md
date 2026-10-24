@@ -23,6 +23,7 @@ The department's shared bank of MCQs: one format for every quiz on anantf.com. L
 | `js/bank.js` | The shared logic: clean, check, duplicates, papers, CSV, suggestion text. Apps import it; don't copy it |
 | `tools/check.mjs` | `node qbank/tools/check.mjs`: checks the bank and papers (run after every change; exit 1 = must fix) |
 | `tools/sheet.mjs` | Spreadsheet round trip: `export [file.csv]`, `import file.csv` (merges by id, deletes nothing) |
+| `tools/import-guide.mjs` | `node qbank/tools/import-guide.mjs`: copies the MO guide's case scenarios into the bank (see "Other apps") |
 | `test/bank.test.mjs` | Unit tests |
 | `index.html`, `manifest.webmanifest`, `icons/`, `sw.js` | The qbank app (see "The qbank app" below) |
 | `ui/qbank.css`, `ui/ui.js` | The app's own pieces on top of the shared phone-app kit (`https://design.anantf.com/v1/app.css`, `DESIGN-APP.md`): `qbank.css` holds only what the kit lacks (session bar, stepper, navigator dots, search field, stats, week, score layout), built from kit tokens; `ui.js` drives the kit's markup (router with history, sheets, toast, segmented controls, chips, steppers, the collapsing large title, View Transitions, safe updates) |
@@ -63,11 +64,21 @@ auto-applying suggestions from a named list of faculty. Not built.
 
 ## Other apps
 
-The MO guide (`mo/guide/js/data/scenarios.js`, `cards.js`), the spinal page's exam section and some of the owner's other apps have
-quiz-like items in their own formats. The owner wants one bank "for everyone" eventually, but those apps are being
-heavily edited (15 Oct 2026), so nothing is pulled in automatically yet. When an app settles: it publishes its items as
-a file in this format (or a small converter writes one) and the file's URL goes in `sources.json`. Keep each app the
-owner of its own items; the qbank app only reads them.
+The bank is the one place to practise questions (owner, 24 Oct 2026): other apps keep their own items and don't read
+the bank; nothing is synced live. Questions come in by copying:
+
+- **MO guide cases** (24 Oct 2026): `node qbank/tools/import-guide.mjs` turns each step on a case's main path (the
+  route the best answers take; detours after a wrong answer are left out) into a question: the step, then the case
+  opening, the guide's choices in a fixed shuffled order, and its feedback as the explanation. Topics come from the
+  script's `TOPICS` table plus `MO guide cases`. Re-run it after editing `mo/guide/js/data/scenarios.js`: questions are
+  matched by their `source` line, so ids stay and guide edits flow in (status and review set in the bank are kept).
+  A new case needs a `TOPICS` line.
+- **Baby MO**: the 30 questions from the Baby MO papers carry the topic `Baby MO`. The Baby MO test itself is
+  `papers/babymo.json`, which lists its questions by id, so new bank questions never join the test by themselves.
+- Not yet: the guide's flashcards (`cards.js`) are question and answer, not multiple choice; they would need wrong
+  choices written and checked. The spinal page's exam section is viva notes. The exams pages belong to the other
+  maintainer: ask before taking anything from them.
+- `sources.json` (show another app's file alongside the bank) stays available but unused.
 
 ## The qbank app (anantf.com/qbank/, 15 Oct 2026)
 
@@ -150,6 +161,5 @@ change, desktop, 200% zoom, offline after the first visit; `SHOTS=<dir>` saves p
   (`img/brugada-type1-v1-v3.jpg`, CC BY-SA 4.0, credited in `img/CREDITS.md` and in the question's explanation).
 - Faculty routes in place: Suggest a change (GitHub issue or copied text) and the spreadsheet round trip; the owner
   approves every change. No `Question edit:` issues open.
-- Not started: pulling other apps' items into the bank (`sources.json` is empty; the owner said the other apps are
-  still changing, 15 Oct 2026). A later idea: a Worker so faculty without GitHub can file suggestions directly.
+- A later idea: a Worker so faculty without GitHub can file suggestions directly.
 - Only checked in phone-sized browsers, not yet on a real iPhone or Android phone.
