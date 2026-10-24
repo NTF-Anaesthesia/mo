@@ -14,7 +14,8 @@
    "answer": 0,
    "explain": "A ProSeal is checked by a good seal (oropharyngeal leak pressure above about 20–25 cmH2O), a gastric tube or gel passing easily down the drain tube, and free, square-wave ventilation. Cuff pressure is not a sign of position: 60 cmH2O is the maximum you should allow (aim for about 40–60), not a test that the mask is in the right place. Note that a leak pressure below 25 cmH2O does not confirm a good seal either.",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -35,7 +36,8 @@
    "answer": 1,
    "explain": "Can't intubate, can't oxygenate is following the Difficult Airway Society plan: after failed intubation, move to plan B, a second-generation supraglottic airway (LMA), to oxygenate. If that fails, try face mask once more and wake the patient if you can oxygenate; if you cannot, go to front-of-neck access. Fibreoptic intubation wastes time while desaturating, and a surgical tracheostomy is not the emergency step.",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -56,7 +58,8 @@
    "answer": 2,
    "explain": "In a stable, awake patient with asthma and COPD, propofol is the usual choice: it blunts airway reflexes and reduces bronchoconstriction on instrumentation, and in an emergency laparotomy it is given as part of a rapid sequence induction. Ketamine is a bronchodilator and is the better choice if she is actively wheezing or haemodynamically unstable. Etomidate has no bronchodilator effect, and rocuronium is a muscle relaxant, not an induction agent.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -77,7 +80,8 @@
    "answer": 1,
    "explain": "Severe aortic stenosis (valve area 1 cm2 or less) is a relative contraindication to neuraxial anaesthesia: a fixed cardiac output cannot compensate for the sudden fall in afterload from a sympathetic block, risking hypotension and coronary ischaemia. Infection is a contraindication only at the puncture site, not on the shoulder. Clopidogrel needs to be stopped for 7 days, so 8 days is enough. Facet arthropathy may make the block technically harder but is not a contraindication.",
    "topics": [
-    "Regional"
+    "Regional",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -98,7 +102,8 @@
    "answer": 3,
    "explain": "Two 1 mg vials give 2 mg = 2000 mcg. Made up to 40 ml in total, that is 2000 / 40 = 50 mcg per ml. Always label the syringe with the final concentration.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -119,7 +124,8 @@
    "answer": 2,
    "explain": "The first massive transfusion pack is based on red cells: 4 units of packed red cells (written \"PCT\" in our protocol), with plasma, so that blood products are given in a balanced ratio. Cryoprecipitate usually comes in a later pack or when fibrinogen is low. Check the hospital's current MTP for the exact contents of each pack.",
    "topics": [
-    "Transfusion"
+    "Transfusion",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -140,7 +146,8 @@
    "answer": 0,
    "explain": "A cuff that is too small (the bladder should be about 40% of the arm circumference) needs more pressure to occlude the artery, so it over-reads; a cuff that is too big under-reads. Arterial lines use a pressure transducer, not oscillometry (oscillometry is how the NIBP cuff works). A 3-lead ECG usually shows leads I, II or III. Venous pulsations (for example with tricuspid regurgitation or a probe that is too tight) make pulse oximetry unreliable.",
    "topics": [
-    "Monitoring"
+    "Monitoring",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -161,7 +168,8 @@
    "answer": 0,
    "explain": "The ACC/AHA \"active cardiac conditions\" that need evaluation and treatment before non-cardiac surgery are unstable coronary syndromes, decompensated heart failure, significant arrhythmias (such as high-grade AV block) and severe valve disease. Compensated heart failure with rate-controlled atrial fibrillation is not an active condition, so it does not need further work-up before surgery. Each of the other options includes at least one active condition.",
    "topics": [
-    "Pre-op"
+    "Pre-op",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -182,7 +190,8 @@
    "answer": 0,
    "explain": "Oral morphine 10 mg every 8 hours is 30 mg a day. Intravenous morphine is about three times as potent as oral (oral to IV ratio about 3:1), so 30 / 3 = 10 mg IV in 24 hours.",
    "topics": [
-    "Pain"
+    "Pain",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -203,7 +212,8 @@
    "answer": 2,
    "explain": "The maximum safe dose of ropivacaine is about 3 mg/kg. For 60 kg that is 3 x 60 = 180 mg. With 40 ml for a fascia iliaca block, the concentration must be 0.45% or less (for example 0.375% x 40 ml = 150 mg) to stay under the limit.",
    "topics": [
-    "Regional"
+    "Regional",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -224,7 +234,8 @@
    "answer": 2,
    "explain": "ASA 3 means severe systemic disease. Coronary artery disease with a stent more than 3 months ago is one of the ASA's own ASA 3 examples. Treated hypertension, diabetes and well-controlled asthma would each be ASA 2 alone, but the ischaemic heart disease makes this patient ASA 3.",
    "topics": [
-    "Pre-op"
+    "Pre-op",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -245,7 +256,8 @@
    "answer": 2,
    "explain": "IV paracetamol is 15 mg/kg for patients 50 kg or less: 15 x 40 = 600 mg. At 1000 mg in 100 ml (10 mg/ml), that is 60 ml. Giving the whole 100 ml vial (1 g) is for adults over 50 kg.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -266,7 +278,8 @@
    "answer": 2,
    "explain": "100 mcg made up to 10 ml is 10 mcg per ml. 6 ml is left, so 4 ml was used: 4 x 10 = 40 mcg. Record the amount given and discard the rest with a witness, as for every controlled drug.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -287,7 +300,8 @@
    "answer": 2,
    "explain": "The intubating dose of atracurium is 0.5 mg/kg: 0.5 x 70 = 35 mg. Onset is about 2–3 minutes and it lasts about 30–40 minutes.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -308,7 +322,8 @@
    "answer": 2,
    "explain": "Brugada pattern: in V1 and V2 the ST segment rises 2 mm or more from the end of the QRS and slopes down in a \"coved\" shape into an inverted T wave (type 1, the diagnostic pattern). It can look like right bundle branch block, but RBBB has an rSR' without the coved ST elevation. It matters before anaesthesia because fever, some drugs (for example sodium channel blockers and high-dose propofol) and electrolyte changes can trigger ventricular arrhythmias, so the patient needs a cardiology review before elective surgery. ECG: PeaBrainC, Wikimedia Commons, CC BY-SA 4.0.",
    "topics": [
-    "Cardiac"
+    "Cardiac",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -329,7 +344,8 @@
    "answer": 1,
    "explain": "Laryngospasm is treated by removing the stimulus, 100% oxygen, CPAP with a tight mask, jaw thrust, and deepening anaesthesia with propofol (about 0.5–1 mg/kg). If it persists, a small dose of suxamethonium (about 0.1–0.5 mg/kg, for example 10–20 mg) usually breaks it; 1–2 mg/kg (around 100 mg) is the intubating dose, used if you need to intubate. The key takes the 100 mg dose as the exception.",
    "topics": [
-    "Emergencies"
+    "Emergencies",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -350,7 +366,8 @@
    "answer": 1,
    "explain": "1:10,000 means 1 g in 10,000 ml = 0.1 mg per ml. So 1 ml contains 0.1 mg = 100 mcg. (1:1,000 is 1 mg per ml, the strength used for intramuscular adrenaline in anaphylaxis.)",
    "topics": [
-    "Emergencies"
+    "Emergencies",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -371,7 +388,8 @@
    "answer": 1,
    "explain": "pH 7.30 is an acidaemia, and a low bicarbonate (16) means the primary problem is a metabolic acidosis, here with a raised lactate (for example sepsis from diverticulitis). The PaCO2 is low, so the lungs are compensating, but the pH is not normal, so it is only partially compensated. By Winter's formula the expected PaCO2 is 1.5 x 16 + 8 = 32 ± 2; 28 is lower than that, suggesting an extra respiratory alkalosis as well.",
    "topics": [
-    "Acid-base"
+    "Acid-base",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -392,7 +410,8 @@
    "answer": 2,
    "explain": "Desaturation with high airway pressures and reduced breath sounds on the left after intubation suggests the tube has slipped into the right main bronchus. It is common in laparoscopic surgery, because the pneumoperitoneum and head-down tilt push the carina up towards the tube tip. Check the tube depth, listen to both sides and pull the tube back. A tension pneumothorax on the left would need left-sided decompression, not right; increasing ventilation does not fix the cause.",
    "topics": [
-    "Emergencies"
+    "Emergencies",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -413,7 +432,8 @@
    "answer": 3,
    "explain": "Of these findings, a short thyromental distance (under about 6 cm) is the best single predictor of difficult laryngoscopy, because it means little space to displace the tongue. Limited mandibular protrusion also predicts difficulty, and some would rank it higher. A beard makes mask ventilation harder, and older age is a risk for difficult mask ventilation, but neither predicts difficult intubation as strongly.",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "hard",
    "status": "active",
@@ -434,7 +454,8 @@
    "answer": 3,
    "explain": "A thyromental distance under about 6 cm, a mouth opening under about 3 cm and limited neck movement each predict a difficult laryngoscopy. Together they add up, so this patient is at higher risk and needs a plan for a difficult airway. None of the measurements here is reassuring on its own.",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -455,7 +476,8 @@
    "answer": 3,
    "explain": "Manual in-line stabilisation reduces neck movement during laryngoscopy but does not abolish it, so it does not guarantee that the cervical spine is protected (the false statement). It makes the view worse, so it is a potential difficult airway. The assistant can hold the head from above (cephalad) or from the side or front of the patient (caudad).",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -476,7 +498,8 @@
    "answer": 0,
    "explain": "Fast atrial fibrillation with hypotension (BP 70/40) is unstable, so the treatment is immediate synchronised DC cardioversion. Amiodarone is for stable patients, or after cardioversion; digoxin is too slow to act in this setting. Doing nothing is not appropriate in a haemodynamically unstable patient.",
    "topics": [
-    "Cardiac"
+    "Cardiac",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -497,7 +520,8 @@
    "answer": 2,
    "explain": "For PONV in a patient who had no prophylaxis, a 5-HT3 antagonist such as ondansetron (4 mg IV) is the first-line rescue. If prophylaxis had been given, rescue should use a drug from a different class. Metoclopramide at the usual 10 mg dose is a weak antiemetic for PONV; droperidol works but carries QT and sedation concerns.",
    "topics": [
-    "PACU"
+    "PACU",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -518,7 +542,8 @@
    "answer": 0,
    "explain": "Current fasting guidelines allow clear fluids up to 2 hours before anaesthesia (and solid food up to 6 hours). For an 08:00 start, clear fluids can be taken until 06:00. Keeping patients nil by mouth from midnight makes them thirsty and dehydrated, with no benefit.",
    "topics": [
-    "Pre-op"
+    "Pre-op",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -539,7 +564,8 @@
    "answer": 0,
    "explain": "Laryngospasm is most often triggered by stimulating the airway (secretions, blood, suction, airway insertion or surgery) while anaesthesia is too light. Children, recent upper respiratory tract infection, smoking and airway surgery also raise the risk. Secretions in the airway increase the risk, so their absence is not a risk factor.",
    "topics": [
-    "Emergencies"
+    "Emergencies",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -560,7 +586,8 @@
    "answer": 3,
    "explain": "Typical RSI doses: fentanyl 1–2 mcg/kg, propofol 2–3 mg/kg (less in the elderly or unstable), suxamethonium 1–1.5 mg/kg (up to 2 mg/kg), then atracurium 0.5 mg/kg once suxamethonium wears off. Each wrong option has one dose ten times too high.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -581,7 +608,8 @@
    "answer": 0,
    "explain": "Atracurium is broken down by Hofmann elimination (spontaneous, depending on temperature and pH) and by ester hydrolysis by non-specific plasma esterases, so its action does not depend on the liver or kidneys. Hypothermia slows Hofmann elimination and prolongs it, so hyperthermia does not potentiate it. Even in high doses it is slower in onset than suxamethonium. Its histamine release causes hypotension and tachycardia, not bradycardia.",
    "topics": [
-    "Pharmacology"
+    "Pharmacology",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -602,7 +630,8 @@
    "answer": 3,
    "explain": "Gastro-oesophageal reflux disease with a hiatus hernia lowers the barrier at the lower oesophageal sphincter, which makes regurgitation and aspiration more likely, especially in emergencies, obesity, pregnancy and when the stomach is full. Smoking, asthma and a recent cold increase airway irritability and bronchospasm, but they are not the main risk factors for aspiration.",
    "topics": [
-    "Airway"
+    "Airway",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
@@ -623,7 +652,8 @@
    "answer": 1,
    "explain": "The commonest cause of hypotension in recovery is hypovolaemia: inadequate fluid replacement, ongoing bleeding or a vasodilated patient after anaesthesia or a neuraxial block. Pain usually raises the blood pressure, and hypoglycaemia is not a usual cause. A non-invasive cuff has no transducer, so transducer position is a source of error for an arterial line, not for NIBP.",
    "topics": [
-    "PACU"
+    "PACU",
+    "Baby MO"
    ],
    "level": "standard",
    "status": "active",
