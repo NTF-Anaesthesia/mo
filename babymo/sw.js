@@ -12,7 +12,7 @@
 //    and the paper (../qbank/), precached too but not part of the hash: they change often and are always fetched fresh
 //    when there is a signal, so a bank change never needs a new Baby MO version.
 
-const VERSION = 'babymo-2026-10-23-0fe7acd1';
+const VERSION = 'babymo-2026-10-24-cea8097d';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
 const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/logic.js', 'js/ui.js', 'js/store.js', 'js/local.js', 'js/cloud.js', 'js/firebase-config.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
