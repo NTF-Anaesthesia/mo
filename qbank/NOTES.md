@@ -38,7 +38,8 @@ The department's shared bank of MCQs: one format for every quiz on anantf.com. L
 
 - **type** (24 Oct 2026): `mcq` (the default), `essay` or `osce`. Essays and OSCE stations have no choices and no
   answer: `explain` is the answer guide and `link` (one https address) a worked answer. Learners mark themselves
-  (Covered it / Missed points). Sessions, exam mode, papers and Baby MO use `mcq` only. Every essay has the topic
+  (Covered it / Missed points). Sessions, exam mode, papers and Baby MO use `mcq` only. Hidden by default (owner, 24 Oct
+  2026): a learner turns on Progress > Settings > Show essays and OSCE (kept on the phone, key `showWritten`). Every essay has the topic
   `Essay` and every OSCE station `OSCE` (owner, 24 Oct 2026), plus their own tags (kept as the source wrote them).
   The duplicate check compares only within a type, and essays in full: they often share a case and ask different things.
 

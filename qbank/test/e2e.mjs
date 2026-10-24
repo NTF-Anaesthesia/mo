@@ -358,6 +358,10 @@ try {
 
   if (essays.length) await step('essays: list, guide, mark yourself, flag', async () => {
     await page.goto(BASE + '#/practise'); await page.locator('#quick').waitFor();
+    assert.equal(await page.locator('a[href="#/written/essay"]').count(), 0, 'essays are hidden until turned on');
+    await page.goto(BASE + '#/progress'); await page.locator('#written').check();
+    assert.equal(await store('showWritten'), true);
+    await page.goto(BASE + '#/practise'); await page.locator('#quick').waitFor();
     const before = await page.evaluate(() => [localStorage.getItem('qbank.v1.progress'), localStorage.getItem('qbank.v1.flags')]);
     await page.locator('a[href="#/written/essay"]').click();
     await page.locator('#wlist .app-row').first().waitFor();
@@ -376,6 +380,7 @@ try {
     await page.locator('#qflag').click(); await page.waitForFunction(() => document.querySelector('#qflag')?.getAttribute('aria-pressed') === 'true');
     await page.goto(BASE + '#/list/flagged'); await page.locator(`a[href="#/w/${withLink.id}"]`).waitFor();
     await page.goto(BASE + '#/w/' + withLink.id); await page.locator('#qflag').click();
+    await page.goto(BASE + '#/progress'); await page.locator('#written').uncheck();
     await page.evaluate(([p, f]) => { for (const [k, v] of [['progress', p], ['flags', f]]) v == null ? localStorage.removeItem('qbank.v1.' + k) : localStorage.setItem('qbank.v1.' + k, v); }, before);
   });
   await step('progress for questions that left the bank is ignored', async () => {

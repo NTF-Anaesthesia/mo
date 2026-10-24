@@ -159,7 +159,7 @@ function practiseTopic(t) {
 // ---------- Practise (home) ----------
 function viewPractise() {
   const s = getSession(), pr = progress(), fl = flags();
-  const every = [...S.pool, ...S.written];
+  const every = [...S.pool, ...writtenShown()];
   const missed = every.filter(q => P.statusOf(pr, q.id) === 'missed').length, flagged = every.filter(q => fl[q.id]).length;
   const resume = s ? (() => {
     const left = P.secondsLeft(s), kept = s.items.filter(i => i.picked != null).length;
@@ -196,7 +196,11 @@ function viewPractise() {
 // ---------- essays and OSCE: read the question, answer on paper or out loud, then see the guide and mark yourself ----------
 const WRITTEN = { essay: { title: 'Essays', one: 'essay', sub: 'Write it out, then compare with the guide' }, osce: { title: 'OSCE', one: 'station', sub: 'Answer out loud, then compare with the guide' } };
 const writtenOf = type => S.written.filter(q => q.type === type);
+// hidden until the learner turns them on (Progress > Settings; owner, 24 Oct 2026): most learners come for multiple choice
+const showWritten = () => db.get('showWritten', false) === true;
+const writtenShown = () => (showWritten() ? S.written : []);
 function writtenRows() {
+  if (!showWritten()) return '';
   const rows = Object.keys(WRITTEN).map(type => { const n = writtenOf(type).length; return n ? row({ href: `#/written/${type}`, title: WRITTEN[type].title, sub: WRITTEN[type].sub, lead: tile(icon.edit()), value: String(n) }) : ''; }).join('');
   return rows ? section('Written and spoken', rows, { footer: 'You mark these yourself.' }) : '';
 }
@@ -273,7 +277,7 @@ function viewList(kind) {
   const qs = S.pool.filter(q => kind === 'missed' ? P.statusOf(pr, q.id) === 'missed' : fl[q.id]);
   const title = kind === 'missed' ? 'My missed' : 'Flagged';
   // essays and OSCE stations: listed too, opened on their own screen (a session is multiple choice only)
-  const ws = S.written.filter(q => kind === 'missed' ? P.statusOf(pr, q.id) === 'missed' : fl[q.id]);
+  const ws = writtenShown().filter(q => kind === 'missed' ? P.statusOf(pr, q.id) === 'missed' : fl[q.id]);
   const wsec = ws.length ? section(kind === 'missed' ? 'To redo: essays and OSCE' : 'Essays and OSCE', ws.map(q => qRow(q, `#/w/${q.id}`)).join('')) : '';
   const body = qs.length || ws.length
     ? `${qs.length ? `<div class="app-btn-stack qb-top-action"><button type="button" class="app-btn app-btn--primary app-btn--block" id="go">Practise these (${qs.length})</button></div>${section('', qs.map(q => qRow(q)).join(''))}` : ''}${wsec}`
@@ -642,6 +646,7 @@ function viewProgress() {
   const ms = P.topicsOf(S.pool).map(x => P.topicMastery(S.pool, pr, x.topic));
   const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
   const settings = [
+    S.written.length ? `<li><label class="app-row"><span class="app-row-body"><span class="app-row-title">Show essays and OSCE</span><span class="app-row-sub">Under Practise, Written and spoken. Off: multiple choice only</span></span><input type="checkbox" class="app-switch" id="written"${showWritten() ? ' checked' : ''}></label></li>` : '',
     row({ id: 'reset', title: 'Reset progress on this phone', cls: 'app-row--danger', chev: false }),
     !standalone && /iphone|ipad|ipod/i.test(navigator.userAgent) ? row({ still: true, title: '<span class="app-row-sub">To keep this on your phone: tap Share, then Add to Home Screen.</span>' }) : '',
     !standalone && installEvent ? row({ id: 'install', title: 'Install this app on your phone', lead: tile(icon.download()) }) : '',
@@ -655,6 +660,7 @@ function viewProgress() {
       ${section('Settings', settings)}
       ${U.versionBlock()}` });
   $('#reset').addEventListener('click', resetSheet);
+  $('#written')?.addEventListener('change', e => { db.set('showWritten', e.target.checked); U.toast(e.target.checked ? 'Essays and OSCE are under Practise.' : 'Essays and OSCE hidden.'); });
   $('#install')?.addEventListener('click', async () => { installEvent.prompt(); await installEvent.userChoice.catch(() => {}); installEvent = null; viewProgress(); });
   U.wireVersion('qbank-');
 }
