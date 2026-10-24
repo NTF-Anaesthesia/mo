@@ -5,7 +5,10 @@
 //   { kind: 'ntf-qbank', version: 1, questions: [Question] }
 // Question:
 //   { id, stem, options: [2-6 strings], answer: index, explain, topics: [..], level: 'standard'|'hard',
-//     status: 'draft'|'active'|'archived', image: '' | 'img/<file>', source, review, updated: 'YYYY-MM-DD' }
+//     status: 'draft'|'active'|'archived', image: '' | 'img/<file>', source, review, updated: 'YYYY-MM-DD',
+//     type: 'mcq'|'essay'|'osce', link: '' | 'https://...' }
+//   - type: mcq (the default) has choices and an answer. essay and osce are written or spoken answers: no choices; the
+//     explanation holds the marking guide and link a worked answer. Learners mark themselves; papers use mcq only.
 //   - id never changes and is never reused (ids are how papers, results and imports find a question).
 //   - status: draft = still being written or checked (never given to learners); active = ready; archived = retired.
 //   - review: open notes for the checker ("answer key doubtful because ..."); empty once checked.
@@ -15,9 +18,11 @@ export const KIND = 'ntf-qbank';
 export const STATUSES = ['draft', 'active', 'archived'];
 export const STATUS_LABEL = { draft: 'Draft', active: 'Ready', archived: 'Archived' };
 export const LEVELS = ['standard', 'hard'];
+export const TYPES = ['mcq', 'essay', 'osce'];
+export const TYPE_LABEL = { mcq: 'Multiple choice', essay: 'Essay', osce: 'OSCE' };
 export const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 export const MIN_OPTIONS = 2, MAX_OPTIONS = 6;
-export const LIMITS = { stem: 3000, option: 500, explain: 4000, topic: 60, review: 2000, source: 200 };
+export const LIMITS = { stem: 3000, option: 500, explain: 4000, topic: 60, review: 2000, source: 200, link: 500 };
 export const REPO = 'NTF-Anaesthesia/mo';
 
 const str = v => (v == null ? '' : String(v));
@@ -43,6 +48,7 @@ export function splitTopics(v) {
 
 // Every field present and tidy, whatever came in (a CSV row, an older format, a half-filled form).
 export function clean(q = {}) {
+  const type = TYPES.includes(q.type) ? q.type : 'mcq';
   const options = (Array.isArray(q.options) ? q.options : []).map(tidy);
   while (options.length > MIN_OPTIONS && !options[options.length - 1]) options.pop();   // trailing blanks
   const ans = Number.isInteger(q.answer) ? q.answer : /^[A-Fa-f]$/.test(str(q.answer).trim()) ? LETTERS.indexOf(str(q.answer).trim().toUpperCase()) : parseInt(q.answer, 10);
@@ -59,6 +65,8 @@ export function clean(q = {}) {
     source: tidy(q.source).slice(0, LIMITS.source),
     review: tidy(q.review),
     updated: /^\d{4}-\d{2}-\d{2}$/.test(str(q.updated)) ? str(q.updated) : '',
+    type,
+    link: str(q.link).trim(),
   };
 }
 
@@ -73,6 +81,11 @@ export function problems(q, forStatus = q.status) {
   if (q.options.length > MAX_OPTIONS) add('options', `At most ${MAX_OPTIONS} choices.`);
   q.options.forEach((o, i) => { if (o.length > LIMITS.option) add('opt' + i, `Choice ${LETTERS[i]} is too long.`); });
   if (q.image && !/^img\/[a-z0-9][a-z0-9._-]*\.(png|jpe?g|webp|svg)$/.test(q.image)) add('image', 'A picture is a file in qbank/img/, written as img/<file>.');
+  if (q.link && (q.link.length > LIMITS.link || !/^https:\/\/[^\s"<>]+$/.test(q.link))) add('link', 'A link is one https:// address.');
+  if (q.type !== 'mcq') {
+    if (q.options.some(Boolean)) add('options', `${TYPE_LABEL[q.type]} questions have no choices.`);
+    return out;
+  }
   if (forStatus === 'active') {
     if (q.options.length < MIN_OPTIONS) add('options', `At least ${MIN_OPTIONS} choices.`);
     q.options.forEach((o, i) => { if (!o) add('opt' + i, `Fill in choice ${LETTERS[i]}.`); });
@@ -85,11 +98,13 @@ export function problems(q, forStatus = q.status) {
 export const isReady = q => q.status === 'active' && problems(q, 'active').length === 0;
 
 // Two questions that are probably the same one (copied, or reworded at the end). Short stems must match exactly.
+// Only within one type. Essays often share a case and differ in what they ask, so they must match in full.
 const stemKey = s => str(s).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 export function sameQuestion(a, b) {
   const x = stemKey(a.stem), y = stemKey(b.stem);
-  if (!x || !y) return false;
+  if (!x || !y || (a.type || 'mcq') !== (b.type || 'mcq')) return false;
   if (x === y) return true;
+  if ((a.type || 'mcq') !== 'mcq') return false;
   if (Math.min(x.length, y.length) < 25) return false;
   return x.startsWith(y) || y.startsWith(x) || x.slice(0, 60) === y.slice(0, 60);
 }
@@ -127,7 +142,7 @@ export function resolvePaper(paper, bankQuestions) {
   const pool = ids.map(id => byId.get(id)).filter(Boolean)
     .filter(q => !topics.length || q.topics.some(t => topics.includes(t.toLowerCase())))
     .map(q => ({ ...q, must: must.has(q.id), level: hard ? (hard.has(q.id) ? 'hard' : 'standard') : q.level }));
-  return { pool: pool.filter(isReady), all: pool, settings: { ...PAPER_DEFAULTS, ...pick(paper, Object.keys(PAPER_DEFAULTS)) }, errors };
+  return { pool: pool.filter(q => q.type === 'mcq' && isReady(q)), all: pool, settings: { ...PAPER_DEFAULTS, ...pick(paper, Object.keys(PAPER_DEFAULTS)) }, errors };
 }
 const pick = (o, keys) => Object.fromEntries(keys.filter(k => o[k] != null).map(k => [k, o[k]]));
 
@@ -150,11 +165,11 @@ export function suggestionIssueUrl(q, change, name) {
 }
 
 // ---- spreadsheet round trip (Google Sheets / Excel): one row per question ----
-export const COLUMNS = ['id', 'status', 'topics', 'level', 'question', 'A', 'B', 'C', 'D', 'E', 'F', 'answer', 'explanation', 'source', 'review'];
+export const COLUMNS = ['id', 'status', 'topics', 'level', 'question', 'A', 'B', 'C', 'D', 'E', 'F', 'answer', 'explanation', 'source', 'review', 'type', 'link'];
 const cell = v => { const s = str(v); return /[",\n\r]/.test(s) || /^[=+\-@]/.test(s) ? `"${(/^[=+\-@]/.test(s) ? "'" : '') + s.replace(/"/g, '""')}"` : s; };
 export function toCSV(questions) {
   const rows = [COLUMNS.join(',')];
-  for (const q of questions.map(clean)) rows.push([q.id, q.status, q.topics.join('; '), q.level, q.stem, ...LETTERS.map((_, i) => q.options[i] ?? ''), q.answer >= 0 ? LETTERS[q.answer] : '', q.explain, q.source, q.review].map(cell).join(','));
+  for (const q of questions.map(clean)) rows.push([q.id, q.status, q.topics.join('; '), q.level, q.stem, ...LETTERS.map((_, i) => q.options[i] ?? ''), q.answer >= 0 ? LETTERS[q.answer] : '', q.explain, q.source, q.review, q.type, q.link].map(cell).join(','));
   return rows.join('\r\n') + '\r\n';
 }
 export function parseCSV(text) {
@@ -177,10 +192,15 @@ export function fromCSV(text) {
   if (!head) return [];
   const col = name => head.findIndex(h => h.trim().toLowerCase() === name.toLowerCase());
   const get = (r, name) => { const i = col(name); return i < 0 ? '' : str(r[i]).replace(/^'(?=[=+\-@])/, ''); };
-  return rows.map(r => clean({
-    id: get(r, 'id'), status: get(r, 'status'), topics: get(r, 'topics'), level: get(r, 'level'), stem: get(r, 'question'),
-    options: LETTERS.map(l => get(r, l)), answer: get(r, 'answer'), explain: get(r, 'explanation'), source: get(r, 'source'), review: get(r, 'review'),
-  }));
+  return rows.map(r => {
+    const q = clean({
+      id: get(r, 'id'), status: get(r, 'status'), topics: get(r, 'topics'), level: get(r, 'level'), stem: get(r, 'question'),
+      options: LETTERS.map(l => get(r, l)), answer: get(r, 'answer'), explain: get(r, 'explanation'), source: get(r, 'source'), review: get(r, 'review'),
+      type: get(r, 'type'), link: get(r, 'link'),
+    });
+    for (const k of ['type', 'link']) if (col(k) < 0) delete q[k];   // a sheet from before these columns: keep the bank's
+    return q;
+  });
 }
 
 // Merge edited rows back into the bank by id. New rows (no id) get one. -> { questions, added, changed, unchanged }
@@ -192,6 +212,8 @@ export function mergeById(bankQuestions, incoming, today = '') {
     if (!q.stem) continue;
     if (q.id && byId.has(q.id)) {
       const old = out[byId.get(q.id)], next = { ...q, image: q.image || old.image, updated: old.updated };
+      if (!('type' in raw)) next.type = old.type;
+      if (!('link' in raw)) next.link = old.link;
       if (JSON.stringify(next) === JSON.stringify(old)) { unchanged++; continue; }
       out[byId.get(q.id)] = { ...next, updated: today || old.updated }; changed++;
     } else {

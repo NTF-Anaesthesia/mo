@@ -23,7 +23,8 @@ await new Promise(r => server.listen(0, '127.0.0.1', r));
 const BASE = `http://localhost:${server.address().port}/qbank/`;
 
 const bank = JSON.parse(fs.readFileSync(path.join(root, 'qbank/bank/questions.json'), 'utf8'));
-const ready = B.readyQuestions(bank.questions);
+const ready = B.readyQuestions(bank.questions).filter(q => q.type === 'mcq');   // sessions, exams and papers
+const essays = B.readyQuestions(bank.questions).filter(q => q.type === 'essay');
 const byId = new Map(ready.map(q => [q.id, q]));
 
 const exe = process.env.CHROMIUM_PATH || (fs.existsSync('/opt/pw-browsers/chromium') && !fs.statSync('/opt/pw-browsers/chromium').isDirectory() ? '/opt/pw-browsers/chromium' : null);
@@ -355,6 +356,28 @@ try {
     assert.equal(await text('#getlatest'), 'Not updating? Get the latest version');
   });
 
+  if (essays.length) await step('essays: list, guide, mark yourself, flag', async () => {
+    await page.goto(BASE + '#/practise'); await page.locator('#quick').waitFor();
+    const before = await page.evaluate(() => [localStorage.getItem('qbank.v1.progress'), localStorage.getItem('qbank.v1.flags')]);
+    await page.locator('a[href="#/written/essay"]').click();
+    await page.locator('#wlist .app-row').first().waitFor();
+    assert.equal(await text('#bar h1'), 'Essays');
+    assert.equal(await page.locator('#wlist .app-row').count(), essays.length);
+    await screen('essays');
+    const withLink = essays.find(q => q.link);
+    await page.goto(BASE + '#/w/' + withLink.id); await page.locator('#show').waitFor();
+    assert.equal(await page.locator('.app-choice').count(), 0, 'an essay has no choices');
+    await screen('essay');
+    await page.locator('#show').click(); await page.locator('#wgot').waitFor();
+    assert.equal(await page.locator('#after a[href]').getAttribute('href'), withLink.link);
+    await screen('essay-guide', ['.qb-foot-row']);
+    await page.locator('#wgot').click(); await page.waitForFunction(() => document.querySelector('#wgot')?.getAttribute('aria-pressed') === 'true');
+    assert.equal((await store('progress'))[withLink.id].c, 1);
+    await page.locator('#qflag').click(); await page.waitForFunction(() => document.querySelector('#qflag')?.getAttribute('aria-pressed') === 'true');
+    await page.goto(BASE + '#/list/flagged'); await page.locator(`a[href="#/w/${withLink.id}"]`).waitFor();
+    await page.goto(BASE + '#/w/' + withLink.id); await page.locator('#qflag').click();
+    await page.evaluate(([p, f]) => { for (const [k, v] of [['progress', p], ['flags', f]]) v == null ? localStorage.removeItem('qbank.v1.' + k) : localStorage.setItem('qbank.v1.' + k, v); }, before);
+  });
   await step('progress for questions that left the bank is ignored', async () => {
     await page.evaluate(() => {
       const p = JSON.parse(localStorage.getItem('qbank.v1.progress')); p.qgone001 = { n: 5, c: 0, h: [[1, 0]] }; localStorage.setItem('qbank.v1.progress', JSON.stringify(p));

@@ -8,7 +8,7 @@ import * as U from '../ui/ui.js';
 const { $, $$, esc, icon } = U;
 
 const db = U.store('qbank.v1.');
-const S = { pool: [], byId: new Map(), papers: [], loaded: false, error: null, browse: { q: '', topic: '' }, cleanup: [] };
+const S = { pool: [], byId: new Map(), written: [], wById: new Map(), papers: [], loaded: false, error: null, browse: { q: '', topic: '' }, cleanup: [] };
 const TAB_ROOTS = { '/practise': 'practise', '/browse': 'browse', '/papers': 'papers', '/progress': 'progress' };
 
 // ---------- state on this phone ----------
@@ -33,8 +33,11 @@ async function load() {
       const src = await getJSON('sources.json');
       for (const s of src.sources || []) { try { const f = await getJSON(typeof s === 'string' ? s : s.url); if (f?.kind === B.KIND) extra.push(f.questions); } catch { /* one source down: skip it */ } }
     } catch { /* no sources */ }
-    S.pool = B.readyQuestions(bank.questions, ...extra);
+    const ready = B.readyQuestions(bank.questions, ...extra);
+    S.pool = ready.filter(q => q.type === 'mcq');   // every practice, exam and paper screen: multiple choice only
     S.byId = new Map(S.pool.map(q => [q.id, q]));
+    S.written = ready.filter(q => q.type !== 'mcq');   // essays and OSCE: their own screens, marked by the learner
+    S.wById = new Map(S.written.map(q => [q.id, q]));
     const index = await getJSON('papers.json').catch(() => ({ papers: [] }));
     S.papers = (await Promise.all((index.papers || []).map(id => getJSON(`papers/${id}.json`).catch(() => null)))).filter(Boolean)
       .map(paper => ({ paper, resolved: B.resolvePaper(paper, bank.questions) }));
@@ -156,7 +159,8 @@ function practiseTopic(t) {
 // ---------- Practise (home) ----------
 function viewPractise() {
   const s = getSession(), pr = progress(), fl = flags();
-  const missed = S.pool.filter(q => P.statusOf(pr, q.id) === 'missed').length, flagged = S.pool.filter(q => fl[q.id]).length;
+  const every = [...S.pool, ...S.written];
+  const missed = every.filter(q => P.statusOf(pr, q.id) === 'missed').length, flagged = every.filter(q => fl[q.id]).length;
   const resume = s ? (() => {
     const left = P.secondsLeft(s), kept = s.items.filter(i => i.picked != null).length;
     return `<div class="app-card app-card--accent" id="resume-card"><p class="app-kicker">Resume</p><p class="app-card-title">Q ${s.pos + 1} of ${s.items.length} · ${esc(s.label)}</p>
@@ -175,7 +179,8 @@ function viewPractise() {
       row({ href: '#/list/missed', id: 'row-missed', title: 'My missed', lead: tile(icon.cross(), 'app-row-icon--bad'), value: String(missed) }),
       row({ href: '#/list/flagged', id: 'row-flagged', title: 'Flagged', lead: tile(icon.flag(), 'app-row-icon--ink'), value: String(flagged) }),
       row({ id: 'custom', title: 'Custom practice', sub: 'Choose topics, how many and how', lead: tile(icon.sliders()) }),
-    ].join(''), { footer: `<span id="ready-count">${plural(S.pool.length, 'question')} ready</span>. Answers and progress stay on this phone.` })}`;
+    ].join(''), { footer: `<span id="ready-count">${plural(S.pool.length, 'question')} ready</span>. Answers and progress stay on this phone.` })}
+    ${writtenRows()}`;
   frame({ title: 'Practise', large: true, tab: 'practise', body });
   $('#quick')?.addEventListener('click', quick);
   $('#resume')?.addEventListener('click', () => U.go('#/session'));
@@ -186,6 +191,69 @@ function viewPractise() {
   });
   $('#exam')?.addEventListener('click', examSheet);
   $('#custom')?.addEventListener('click', customSheet);
+}
+
+// ---------- essays and OSCE: read the question, answer on paper or out loud, then see the guide and mark yourself ----------
+const WRITTEN = { essay: { title: 'Essays', one: 'essay', sub: 'Write it out, then compare with the guide' }, osce: { title: 'OSCE', one: 'station', sub: 'Answer out loud, then compare with the guide' } };
+const writtenOf = type => S.written.filter(q => q.type === type);
+function writtenRows() {
+  const rows = Object.keys(WRITTEN).map(type => { const n = writtenOf(type).length; return n ? row({ href: `#/written/${type}`, title: WRITTEN[type].title, sub: WRITTEN[type].sub, lead: tile(icon.edit()), value: String(n) }) : ''; }).join('');
+  return rows ? section('Written and spoken', rows, { footer: 'You mark these yourself.' }) : '';
+}
+const typeTag = q => B.TYPE_LABEL[q.type];
+const ownTopics = q => q.topics.filter(t => t.toLowerCase() !== typeTag(q).toLowerCase());   // the type tag is the screen itself
+function viewWritten(type) {
+  const W = WRITTEN[type], all = writtenOf(type), pr = progress();
+  const tops = P.topicsOf(all.map(q => ({ ...q, topics: ownTopics(q) })));
+  if (!tops.some(t => t.topic === S.wtopic)) S.wtopic = '';
+  frame({ title: W.title, back: { label: 'Practise', to: '#/practise' }, tab: 'practise',
+    body: `<div class="app-btn-stack qb-top-action"><button type="button" class="app-btn app-btn--primary app-btn--block" id="wnext">Give me one</button></div>
+      ${U.chips('wtopic', [{ value: '', label: 'All topics' }, ...tops.map(t => ({ value: t.topic, label: `${t.topic} (${t.count})` }))], [S.wtopic || ''], 'Topic')}
+      <div id="wlist"></div>` });
+  const shown = () => all.filter(q => !S.wtopic || ownTopics(q).includes(S.wtopic));
+  const paint = () => {
+    const qs = shown();
+    $('#wlist').innerHTML = section(plural(qs.length, W.one), qs.map(q => {
+      const st = P.statusOf(pr, q.id), b = (st === 'missed' ? '<span class="app-badge app-badge--bad">To redo</span>' : st === 'right' ? '<span class="app-badge app-badge--ok">Done</span>' : '') + (isFlagged(q.id) ? '<span class="app-badge">Flagged</span>' : '');
+      return row({ href: `#/w/${q.id}`, title: esc(q.stem), clamp: true, sub: `<span class="qb-sub">${ownTopics(q).map(esc).join(' · ') || 'General'}</span>${b ? `<span class="qb-badges">${b}</span>` : ''}` });
+    }).join(''));
+  };
+  U.wireChips(main(), 'wtopic', v => { S.wtopic = v[0] || ''; paint(); }, { single: true });
+  $('#wnext').addEventListener('click', () => { const q = P.pickPractice(shown(), progress(), 1)[0]; if (q) U.go(`#/w/${q.id}`); });
+  paint();
+}
+function viewWrittenQ(id, params) {
+  const q = S.wById.get(id);
+  const back = { label: q ? WRITTEN[q.type].title : 'Practise', to: q ? `#/written/${q.type}` : '#/practise' };
+  if (!q) { frame({ title: 'Question', back, tab: 'practise', body: emptyCard(icon.browse(), 'Not in the bank', 'This question is no longer in the bank.') }); return; }
+  const shown = S.reveal === id, fl = isFlagged(id), st = P.statusOf(progress(), id);
+  const paras = q.stem.split(/\n{2,}/).map(p => `<p class="qb-stem">${esc(p).replace(/\n/g, '<br>')}</p>`).join('');
+  const guide = shown ? `<div class="app-panel qb-explain"><h2 class="app-kicker">Answer guide</h2>${q.explain ? q.explain.split(/\n{2,}/).map(p => `<p>${esc(p).replace(/\n/g, '<br>')}</p>`).join('') : '<p class="app-muted">No answer guide yet. Compare with your notes, or suggest one.</p>'}
+      ${q.link ? `<p><a class="app-btn app-btn--secondary app-btn--block" href="${esc(q.link)}" target="_blank" rel="noopener">Open the worked answer</a></p>` : ''}</div>
+    <h2 class="app-section-header">How did you do?</h2>
+    <div class="app-btn-row qb-foot-row"><button type="button" class="app-btn app-btn--outline" id="wmiss" aria-pressed="${st === 'missed'}">Missed points</button><button type="button" class="app-btn app-btn--primary" id="wgot" aria-pressed="${st === 'right'}">Covered it</button></div>`
+    : `<button type="button" class="app-btn app-btn--secondary app-btn--block qb-show" id="show">Show the answer guide</button>`;
+  frame({ title: typeTag(q), back, tab: 'practise', keepScroll: params.get('keep') === '1',
+    body: `<div class="qb-q"><div class="qb-q-kicker"><span class="app-kicker">${ownTopics(q).map(esc).join(' · ') || 'General'}</span>${fl ? '<span class="app-badge">Flagged</span>' : ''}</div>
+      <div id="stem">${paras}</div>${imgHtml(q)}<div id="after">${guide}</div></div>
+      ${section('', [
+        row({ id: 'wnext', title: 'Next one', sub: 'Ones you haven\'t done come first', lead: tile(icon.play()) }),
+        row({ id: 'qflag', title: fl ? 'Flagged' : 'Flag this question', sub: fl ? 'Tap to remove the flag' : 'Find it later under Flagged', lead: tile(fl ? icon.flagOn() : icon.flag(), 'app-row-icon--ink'), chev: false, attrs: ` aria-pressed="${fl}"` }),
+        row({ id: 'qsuggest', title: 'Suggest a change', sub: 'Send a correction or comment to the owner', lead: tile(icon.edit()) }),
+      ].join(''), { cls: 'qb-q-actions' })}
+      <div class="qb-meta">${q.source ? `<p>Source: ${esc(q.source)}</p>` : ''}</div>` });
+  const keep = () => viewWrittenQ(id, new URLSearchParams('keep=1'));
+  $('#show')?.addEventListener('click', () => { S.reveal = id; keep(); U.announce('Answer guide shown'); });
+  const mark = ok => { db.set('progress', P.record(progress(), id, ok)); db.set('days', P.addDay(db.get('days', []))); keep(); U.toast(ok ? 'Marked as covered.' : 'Marked to redo.'); };
+  $('#wgot')?.addEventListener('click', () => mark(true));
+  $('#wmiss')?.addEventListener('click', () => mark(false));
+  $('#wnext').addEventListener('click', () => {
+    const rest = writtenOf(q.type).filter(x => x.id !== id), n = P.pickPractice(rest, progress(), 1)[0];
+    if (n) { S.reveal = null; U.go(`#/w/${n.id}`); } else U.toast('That was the only one.');
+  });
+  $('#qflag').addEventListener('click', () => { setFlag(id, !fl); keep(); U.toast(fl ? 'Flag removed.' : 'Flagged.'); $('#qflag')?.focus(); });
+  $('#qsuggest').addEventListener('click', () => suggestSheet(q));
+  wireZoom();
 }
 
 function viewTopics() {
@@ -204,8 +272,11 @@ function viewList(kind) {
   const pr = progress(), fl = flags();
   const qs = S.pool.filter(q => kind === 'missed' ? P.statusOf(pr, q.id) === 'missed' : fl[q.id]);
   const title = kind === 'missed' ? 'My missed' : 'Flagged';
-  const body = qs.length
-    ? `<div class="app-btn-stack qb-top-action"><button type="button" class="app-btn app-btn--primary app-btn--block" id="go">Practise these (${qs.length})</button></div>${section('', qs.map(q => qRow(q)).join(''))}`
+  // essays and OSCE stations: listed too, opened on their own screen (a session is multiple choice only)
+  const ws = S.written.filter(q => kind === 'missed' ? P.statusOf(pr, q.id) === 'missed' : fl[q.id]);
+  const wsec = ws.length ? section(kind === 'missed' ? 'To redo: essays and OSCE' : 'Essays and OSCE', ws.map(q => qRow(q, `#/w/${q.id}`)).join('')) : '';
+  const body = qs.length || ws.length
+    ? `${qs.length ? `<div class="app-btn-stack qb-top-action"><button type="button" class="app-btn app-btn--primary app-btn--block" id="go">Practise these (${qs.length})</button></div>${section('', qs.map(q => qRow(q)).join(''))}` : ''}${wsec}`
     : kind === 'missed'
       ? emptyCard(icon.check(), 'Nothing missed yet', 'Questions you get wrong collect here, so you can try them again.', `<button type="button" class="app-btn app-btn--primary" id="quick">Start ${plural(quickCount(), 'question')}</button>`)
       : emptyCard(icon.flag(), 'Nothing flagged yet', 'Flag a question during practice to find it here.', `<button type="button" class="app-btn app-btn--primary" id="quick">Start ${plural(quickCount(), 'question')}</button>`);
@@ -671,6 +742,8 @@ const ROUTES = [
   [/^\/browse$/, () => viewBrowse()],
   [/^\/browse\/t\/(.+)$/, m => viewBrowseTopic(m[1])],
   [/^\/q\/([\w-]+)$/, (m, p) => viewQuestion(m[1], p)],
+  [/^\/written\/(essay|osce)$/, m => viewWritten(m[1])],
+  [/^\/w\/([\w-]+)$/, (m, p) => viewWrittenQ(m[1], p)],
   [/^\/papers$/, () => viewPapers()],
   [/^\/paper\/(.+)$/, m => viewPaper(m[1])],
   [/^\/progress$/, () => viewProgress()],
@@ -678,7 +751,7 @@ const ROUTES = [
 let lastPath = null;
 function render({ path, params }, dir) {
   if (!S.loaded) { if (S.error) problemView(); return; }
-  if (!path.startsWith('/q/')) S.reveal = null;
+  if (!/^\/(q|w)\//.test(path)) S.reveal = null;
   const tabSwitch = TAB_ROOTS[path] && TAB_ROOTS[lastPath] && path !== lastPath;
   lastPath = path;
   let kind = dir === 'none' ? 'none' : tabSwitch ? 'fade' : dir === 'replace' ? 'fade' : dir;
@@ -731,10 +804,10 @@ window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); instal
   document.addEventListener('visibilitychange', async () => {
     if (document.hidden || Date.now() - lastFetch < 60000 || !S.loaded) return;
     lastFetch = Date.now();
-    const before = JSON.stringify(S.pool) + JSON.stringify(S.papers.map(p => p.paper));
+    const before = JSON.stringify(S.pool) + JSON.stringify(S.written) + JSON.stringify(S.papers.map(p => p.paper));
     const keep = { ...S };
     await load();
     if (S.error) { Object.assign(S, keep); return; }
-    if (JSON.stringify(S.pool) + JSON.stringify(S.papers.map(p => p.paper)) !== before && isSafe()) render(U.routeOf(), 'none');
+    if (JSON.stringify(S.pool) + JSON.stringify(S.written) + JSON.stringify(S.papers.map(p => p.paper)) !== before && isSafe()) render(U.routeOf(), 'none');
   });
 })();

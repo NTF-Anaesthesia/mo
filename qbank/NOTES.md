@@ -22,6 +22,7 @@ The department's shared bank of MCQs: one format for every quiz on anantf.com. L
 | `sources.json` | Question files from other apps to show alongside the bank (empty for now; see "Other apps") |
 | `js/bank.js` | The shared logic: clean, check, duplicates, papers, CSV, suggestion text. Apps import it; don't copy it |
 | `tools/check.mjs` | `node qbank/tools/check.mjs`: checks the bank and papers (run after every change; exit 1 = must fix) |
+| `tools/import-exams.mjs`, `tools/exams-worked.json` | `node qbank/tools/import-exams.mjs`: copies the exams pages' SAQ essays into the bank (see "Other apps") |
 | `tools/sheet.mjs` | Spreadsheet round trip: `export [file.csv]`, `import file.csv` (merges by id, deletes nothing) |
 | `tools/import-guide.mjs` | `node qbank/tools/import-guide.mjs`: copies the MO guide's case scenarios into the bank (see "Other apps") |
 | `test/bank.test.mjs` | Unit tests |
@@ -33,7 +34,13 @@ The department's shared bank of MCQs: one format for every quiz on anantf.com. L
 
 ## A question
 
-`{ id, stem, options: [2-6], answer: index, explain, topics: [..], level: 'standard'|'hard', status, image, source, review, updated }`
+`{ id, stem, options: [2-6], answer: index, explain, topics: [..], level: 'standard'|'hard', status, image, source, review, updated, type, link }`
+
+- **type** (24 Oct 2026): `mcq` (the default), `essay` or `osce`. Essays and OSCE stations have no choices and no
+  answer: `explain` is the answer guide and `link` (one https address) a worked answer. Learners mark themselves
+  (Covered it / Missed points). Sessions, exam mode, papers and Baby MO use `mcq` only. Every essay has the topic
+  `Essay` and every OSCE station `OSCE` (owner, 24 Oct 2026), plus their own tags (kept as the source wrote them).
+  The duplicate check compares only within a type, and essays in full: they often share a case and ask different things.
 
 - **id** is permanent and never reused: papers, results and spreadsheet imports find questions by id. New questions get
   one from `idFor(stem)` (`q` + 7 letters/digits). Never renumber.
@@ -76,9 +83,16 @@ the bank; nothing is synced live. Questions come in by copying:
   A new case needs a `TOPICS` line.
 - **Baby MO**: the 30 questions from the Baby MO papers carry the topic `Baby MO`. The Baby MO test itself is
   `papers/babymo.json`, which lists its questions by id, so new bank questions never join the test by themselves.
+- **Exams pages SAQ essays** (24 Oct 2026; the other maintainer's, used with their OK; the worked answers are
+  used with permission): `node qbank/tools/import-exams.mjs [page]` reads the exams page (default
+  https://anantf.com/exams/): each study-plan essay becomes an `essay` with topics `Essay` + the plan's tag (Airway,
+  Cardiac/Vasc, ...). The 29 worked essays (PDFs in that site's `exams/reference/`) are listed in
+  `tools/exams-worked.json` with their question typed out once and their curriculum group; each adds `Worked answer`
+  + the group and a link to its PDF, on the matching study-plan essay where there is one. Re-run after the exams
+  page changes: essays are matched by their text, so ids stay.
+- **OSCE**: the type is ready but there are no OSCE questions yet (the exams pages list only the station types).
 - Not yet: the guide's flashcards (`cards.js`) are question and answer, not multiple choice; they would need wrong
-  choices written and checked. The spinal page's exam section is viva notes. The exams pages belong to the other
-  maintainer: ask before taking anything from them.
+  choices written and checked. The spinal page's exam section is viva notes.
 - `sources.json` (show another app's file alongside the bank) stays available but unused.
 
 ## The qbank app (anantf.com/qbank/, 15 Oct 2026)

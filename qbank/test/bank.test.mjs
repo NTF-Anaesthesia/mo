@@ -84,4 +84,23 @@ t('the real bank and papers pass the check', () => {
   const r = B.resolvePaper(JSON.parse(fs.readFileSync(dir + 'papers/babymo.json', 'utf8')), c.questions);
   assert.deepEqual(r.errors, []); assert.ok(r.pool.length > 0);
 });
+t('essays and OSCE: no choices, ready with a stem, kept out of papers, compared in full', () => {
+  const e = B.clean({ id: 'qessay01', type: 'essay', stem: 'A long enough case about a patient. A. Outline the risks (50%).', status: 'active', link: 'https://anantf.com/x.pdf' });
+  assert.equal(e.type, 'essay'); assert.deepEqual(B.problems(e), []); assert.ok(B.isReady(e));
+  assert.ok(B.problems({ ...e, options: ['a', 'b'] }).some(p => p.field === 'options'));
+  assert.ok(B.problems({ ...e, link: 'javascript:alert(1)' }).some(p => p.field === 'link'));
+  assert.equal(B.clean({ type: 'quiz' }).type, 'mcq');
+  const e2 = { ...e, id: 'qessay02', stem: e.stem.replace('the risks', 'the plan') };
+  assert.ok(!B.sameQuestion(e, e2)); assert.ok(B.sameQuestion(e, { ...e2, stem: e.stem }));
+  const m = B.clean({ id: 'qmcq0001', stem: e.stem, options: ['a', 'b'], answer: 0, status: 'active' });
+  assert.ok(!B.sameQuestion(e, m));
+  assert.deepEqual(B.resolvePaper({ id: 'p', questions: 'all' }, [e, m]).pool.map(q => q.id), ['qmcq0001']);
+});
+t('a sheet without type and link columns keeps the bank\'s', () => {
+  const e = B.clean({ id: 'qessay01', type: 'essay', stem: 'Essay stem long enough to count?', status: 'active', link: 'https://anantf.com/x.pdf' });
+  const csv = B.toCSV([e]).split('\r\n').map(l => l.split(',').slice(0, 15).join(',')).join('\r\n');
+  const r = B.mergeById([e], B.fromCSV(csv));
+  assert.equal(r.questions[0].type, 'essay'); assert.equal(r.questions[0].link, e.link);
+  assert.equal(B.fromCSV(B.toCSV([e]))[0].type, 'essay');
+});
 console.log(`qbank: ${n} tests ok`);
