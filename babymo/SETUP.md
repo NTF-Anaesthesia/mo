@@ -60,6 +60,9 @@ refuses everyone, so the test cannot be used.
    click **Publish**.
 3. Whenever that file changes later, repeat steps 1 and 2 (Claude will tell you when a change needs it). Do not edit
    the rules in the console by hand.
+4. Once the repo variables `FIREBASE_PROJECT`, `WIF_PROVIDER` and `RULES_DEPLOYER` are set (keyless sign-in, set up
+   once by the owner), `.github/workflows/deploy-firestore-rules.yml` tests and publishes every merged change to the
+   file instead, and steps 1 to 3 are no longer needed.
 
 ## G. Check it works
 
