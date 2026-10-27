@@ -1,5 +1,5 @@
-# Checks on every PR and push to main: the repo checks (service workers, Worker routes), the apps' unit tests, and the
-# browser suites (each as its own job; "browser" is green only when all passed).
+# Checks on every PR and push to main: the repo checks (service workers, Worker routes), the apps' unit tests, the Baby MO
+# Firestore rules in the emulator, and the browser suites (each as its own job; "browser" is green only when all passed).
 name: Checks
 on:
   pull_request:
@@ -28,6 +28,24 @@ jobs:
           for f in qbank/test/bank.test.mjs qbank/test/practice.test.mjs qbank/test/version.test.mjs babymo/test/logic.test.mjs babymo/test/version.test.mjs mo/guide/test/calc.test.mjs mo/guide/test/content.test.mjs mo/guide/test/version.test.mjs; do
             echo "== $f"; node "$f"
           done
+
+  rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Cache rules test tools and emulator
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/anantf-test-tools
+            ~/.cache/firebase/emulators
+          key: rules-${{ runner.os }}-${{ hashFiles('babymo/test/run-rules.sh') }}
+      - name: Baby MO Firestore rules (local emulator, demo project)
+        run: bash babymo/test/run-rules.sh
 
   browser-suite:
     runs-on: ubuntu-latest
