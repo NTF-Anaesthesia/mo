@@ -11,10 +11,10 @@
 //  - A new version takes over by itself (skipWaiting) and never reloads the page: the page decides when it is safe.
 //  - Only this app's caches (prefix qbank-) are deleted.
 
-const VERSION = 'qbank-2026-10-24-d58b3cb7';
+const VERSION = 'qbank-2026-10-29-66864e99';
 const NET_WAIT = 2500; // ms before falling back to the cached questions
-const SHELL = ['./', 'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'index.html', 'js/app.js', 'js/bank.js', 'js/practice.js', 'manifest.webmanifest', 'ui/qbank.css', 'ui/ui.js'];
-const SITE = ['https://design.anantf.com/v1/app.css', 'https://design.anantf.com/v1/fonts/inter.woff2', 'https://design.anantf.com/v1/fonts/jetbrains-mono.woff2', 'https://design.anantf.com/v1/fonts/literata.woff2'];
+const SHELL = ['./', 'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'index.html', 'js/app.js', 'js/bank.js', 'js/practice.js', 'kit.js', 'manifest.webmanifest', 'ui/qbank.css', 'ui/ui.js'];
+const SITE = ['https://core.anawj.com/ui/1.0.0-rc.35/theme/choice.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/colour.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/grid.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/guard.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/index.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/a.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/b.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/c.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/d.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/e.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/motion.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/palette-css.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/presets.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/schema.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/switch.js', 'https://design.anantf.com/v1/app.css', 'https://design.anantf.com/v1/fonts/inter.woff2', 'https://design.anantf.com/v1/fonts/jetbrains-mono.woff2', 'https://design.anantf.com/v1/fonts/literata.woff2', 'https://design.anantf.com/v1/tokens.css'];
 const DATA = ['bank/questions.json', 'img/brugada-type1-v1-v3.jpg', 'papers.json', 'papers/babymo.json', 'sources.json'];
 
 self.addEventListener('install', e => {

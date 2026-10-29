@@ -23,7 +23,7 @@ const papers = walk('papers').filter(f => f.endsWith('.json')).map(f => path.bas
 const index = JSON.stringify({ about: 'Written by qbank/tools/stamp.mjs: the papers the qbank app lists. Do not edit by hand.', papers }, null, 1) + '\n';
 const indexStale = !fs.existsSync(indexPath) || fs.readFileSync(indexPath, 'utf8') !== index;
 
-const shell = ['index.html', 'manifest.webmanifest', ...walk('icons').filter(f => f.endsWith('.png')), ...walk('ui').filter(f => /\.(js|css)$/.test(f)), ...walk('js').filter(f => f.endsWith('.js'))].sort();
+const shell = ['index.html', 'kit.js', 'manifest.webmanifest', ...walk('icons').filter(f => f.endsWith('.png')), ...walk('ui').filter(f => /\.(js|css)$/.test(f)), ...walk('js').filter(f => f.endsWith('.js'))].sort();
 // fonts and other files outside this folder that the page or its styles use
 const rel = (from, ref) => posix(path.relative(dir, path.resolve(path.dirname(path.join(dir, from)), ref.replace(/[?#].*$/, ''))));
 const site = new Set();

@@ -66,7 +66,7 @@ test('every folder in SITES exists', () => {
 });
 
 // every file the service workers ask for (SHELL, SITE, DATA) must be served on this address (apart from the app kit on
-// design.anantf.com): a worker installs all or nothing
+// design.anantf.com and the app core's theme on core.anawj.com): a worker installs all or nothing
 const repo = path.resolve(new URL('../..', import.meta.url).pathname);
 for (const [sw, base] of [['babymo/sw.js', '/test/'], ['qbank/sw.js', '/qbank/'], ['mo/guide/sw.js', '/guide/'], ['mo/sw.js', '/']]) {
   test(`${sw}: every file it caches is served on ${MO}`, () => {
@@ -75,7 +75,7 @@ for (const [sw, base] of [['babymo/sw.js', '/test/'], ['qbank/sw.js', '/qbank/']
       const m = src.match(new RegExp(`const ${n} = \\[([\\s\\S]*?)\\];`));
       if (!m) continue;
       for (const f of [...m[1].matchAll(/'([^']+)'/g)].map(x => x[1])) {
-        if (f.startsWith('https://design.anantf.com/v1/')) continue;
+        if (f.startsWith('https://design.anantf.com/v1/') || f.startsWith('https://core.anawj.com/ui/')) continue;
         const pub = new URL(f, 'https://' + MO + base).pathname;
         const r = R(MO, pub);
         assert.ok(r.file, `${sw}: ${f} (${pub}) is not served on ${MO}`);
