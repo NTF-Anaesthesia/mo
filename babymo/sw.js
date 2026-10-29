@@ -12,11 +12,11 @@
 //    and the paper (../qbank/), precached too but not part of the hash: they change often and are always fetched fresh
 //    when there is a signal, so a bank change never needs a new Baby MO version.
 
-const VERSION = 'babymo-2026-10-24-cea8097d';
+const VERSION = 'babymo-2026-10-29-73190521';
 const NET_WAIT = 3000; // ms before falling back to the cached copy
-const SHELL = ['./', 'index.html', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/logic.js', 'js/ui.js', 'js/store.js', 'js/local.js', 'js/cloud.js', 'js/firebase-config.js',
+const SHELL = ['./', 'index.html', 'kit.js', 'style.css', 'manifest.webmanifest', 'js/app.js', 'js/logic.js', 'js/ui.js', 'js/store.js', 'js/local.js', 'js/cloud.js', 'js/firebase-config.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
-const SITE = ['../qbank/js/bank.js', '../ana-ntf-monogram.svg', 'https://design.anantf.com/v1/app.css', 'https://design.anantf.com/v1/fonts/inter.woff2', 'https://design.anantf.com/v1/fonts/jetbrains-mono.woff2', 'https://design.anantf.com/v1/fonts/literata.woff2'];
+const SITE = ['../qbank/js/bank.js', '../ana-ntf-monogram.svg', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/choice.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/colour.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/grid.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/guard.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/index.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/a.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/b.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/c.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/d.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/looks/e.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/motion.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/palette-css.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/presets.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/schema.js', 'https://core.anawj.com/ui/1.0.0-rc.35/theme/switch.js', 'https://design.anantf.com/v1/app.css', 'https://design.anantf.com/v1/fonts/inter.woff2', 'https://design.anantf.com/v1/fonts/jetbrains-mono.woff2', 'https://design.anantf.com/v1/fonts/literata.woff2', 'https://design.anantf.com/v1/tokens.css'];
 const DATA = ['../qbank/bank/questions.json', '../qbank/papers/babymo.json'];
 
 const abs = u => new URL(u, self.location).href;

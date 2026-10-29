@@ -19,7 +19,10 @@ repo; never copy anything from there into this repo, a PR or an issue (neutral p
   so they must stay on one address.
 - Each `sw.js` VERSION starts with its folder name and is stamped by the app's own tool: after changing a file a worker
   caches, run `node <app>/tools/stamp.mjs` (`qbank`, `babymo`, `mo/guide`); a version test checks it.
-- The shared look comes from the app kit at `https://design.anantf.com/v1/` (never copy it here). Pages of anantf.com
+- The shared look comes from the app kit at `https://design.anantf.com/v1/` (never copy it here). Each page links `tokens.css` first, then `app.css`, and loads its own `kit.js` (the same file in `mo/`, `mo/guide/`,
+  `babymo/`, `qbank/`; `tools/check.mjs` compares them), which takes the app core's theme from one pinned version of
+  `core.anawj.com/ui/` (named in `kit.js` and `tools/app-kit.mjs`; bump both, then run every app's stamp). Fix gaps in the
+  core's own repos, never here. Pages of anantf.com
   (spinal, regional, airway ...) are linked relatively; the Worker forwards them to anantf.com.
 - The MO guide teaches the department handbook's clinical content as a learning app; it is not the handbook. Rosters,
   leave, MC, who to email, names and phone numbers must not be added to it.

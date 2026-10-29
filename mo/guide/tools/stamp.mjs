@@ -15,7 +15,7 @@ const sw = fs.readFileSync(swPath, 'utf8');
 
 // this app's files: the page, styles, manifest, icons and every script
 const walk = d => fs.readdirSync(path.join(dir, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
-const shell = ['index.html', 'style.css', 'manifest.webmanifest', ...walk('icons').filter(f => f.endsWith('.png')), ...walk('js').filter(f => f.endsWith('.js'))]
+const shell = ['index.html', 'kit.js', 'style.css', 'manifest.webmanifest', ...walk('icons').filter(f => f.endsWith('.png')), ...walk('js').filter(f => f.endsWith('.js'))]
   .map(f => f.split(path.sep).join('/')).sort();
 // shared site files the page uses (outside this folder): what index.html links to, and what those stylesheets (and ours)
 // pull in with @import and url(), followed all the way down, so the guide looks the same with no signal

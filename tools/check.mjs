@@ -53,6 +53,18 @@ if (fs.existsSync(path.join(ROOT, 'worker/test'))) {
   catch (e) { fail('worker tests failed:\n' + String(e.stdout || e.message).split('\n').filter(l => /not ok|Error|expected|actual/.test(l)).slice(0, 10).join('\n')); }
 }
 
+// 5. Each page loads kit.js (the app core's theme); the four copies are the same file and name the version tools/app-kit.mjs
+//    lists for the workers (CORE_FILES), so what a worker caches is what the page loads.
+{
+  const { CORE } = await import('./app-kit.mjs');
+  const copies = ['mo', 'mo/guide', 'babymo', 'qbank'].map(d => [d, fs.readFileSync(path.join(ROOT, d, 'kit.js'), 'utf8')]);
+  for (const [d, text] of copies) {
+    if (text !== copies[0][1]) fail(`${d}/kit.js differs from ${copies[0][0]}/kit.js (keep the copies identical)`);
+    if (!text.includes(`const CORE = '${CORE}';`)) fail(`${d}/kit.js names a different core version than tools/app-kit.mjs (${CORE})`);
+    if (!/src="kit\.js"/.test(fs.readFileSync(path.join(ROOT, d, 'index.html'), 'utf8'))) fail(`${d}/index.html does not load kit.js`);
+  }
+}
+
 if (errors.length) {
   console.error(`check: ${errors.length} problem(s)\n- ` + errors.join('\n- '));
   process.exit(1);
